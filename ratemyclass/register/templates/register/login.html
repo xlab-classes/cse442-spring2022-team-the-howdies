@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Login
+        </title>
+        <style type="text/css">
+            @import url(https://fonts.googleapis.com/css?family=Spartan);
+
+            body{
+                background: #333333
+            }
+
+            .form {
+                position: absolute;
+                background: lightgray;
+                border-radius: 15px;
+                top: 300px;
+                left: 550px;
+                z-index: 1;
+                max-width: 500px;
+                width: 50%;
+                margin: auto;
+                padding: 45px;
+                text-align: center;
+                box-shadow: 0 0 20px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.24);
+            }
+
+            .form input {
+                outline: 0;
+                background: #f2f2f2;
+                color: #000000;
+                width: 100%;
+                border: 0;
+                margin: 0 0 15px;
+                padding: 15px;
+                box-sizing: border-box;
+                font-size: 14px;
+            }
+
+            .form button {
+                text-transform: uppercase;
+                outline: 0;
+                background: #67b5c7;
+                width: 100%;
+                border: 0;
+                padding: 15px;
+                color: #FFFFFF;
+                font-size: 14px;
+                -webkit-transition: all 0.3 ease;
+                transition: all 0.3 ease;
+                cursor: pointer;
+            }
+
+            .form button:hover,.form button:active,.form button:focus {
+                background: #43A047;
+            }
+
+            .form .message {
+                font-family: Spartan;
+                margin: 15px 0 0;
+                color: #000000;
+                font-size: 16px;
+            }
+
+            .form .loginInputs {
+                display: none;
+            }
+
+            .banner {
+                padding-top: 0px;
+                background: #6CBDCF;
+            }
+
+            .banner .bannerContent{
+                padding: 16px;
+                max-width: 1400px;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+            }
+
+            .banner .bannerText {
+                font-family: Spartan;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 72px;
+                color: #FFFFFF;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="banner">
+            <div class="bannerContent">
+                <div class="bannerText">
+                    Welcome Back to Rate My Classes!
+                </div>
+            </div>
+        </div>
+        <div class="form">
+            <form name="loginInputs">
+                <h2>
+                    Login!
+                </h2>
+                <input type="text" name="email" placeholder="Email. . .">
+                <input type="text" name="password" placeholder="Password. . .">
+                <button>Login</button>
+                <p class="message">Don't have an account? <a href="#">Create one here!</a></p>
+                <p class="message"><a href="#">I forgot my password</a></p>
+            </form>
+        </div>
+    </body>
+</html>
