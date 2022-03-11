@@ -5,10 +5,8 @@
             Login
         </title>
         <style type="text/css">
-            @import url(https://fonts.googleapis.com/css?family=Spartan);
-
             body{
-                background: #333333
+                background: #333333;
             }
 
             .form {
@@ -16,7 +14,7 @@
                 background: lightgray;
                 border-radius: 15px;
                 top: 300px;
-                left: 550px;
+                left: 33%;
                 z-index: 1;
                 max-width: 500px;
                 width: 50%;
@@ -68,42 +66,32 @@
             }
 
             .banner {
+                margin-top: 0px;
                 padding-top: 0px;
                 background: #6CBDCF;
-            }
-
-            .banner .bannerContent{
                 padding: 16px;
-                max-width: 1400px;
-                margin: 0 auto;
-                display: flex;
+                
                 align-items: center;
-            }
 
-            .banner .bannerText {
-                font-family: Spartan;
                 font-style: normal;
                 font-weight: bold;
                 font-size: 72px;
                 color: #FFFFFF;
+                text-align: center;
             }
-        </style>
+        </style> 
     </head>
     <body>
         <div class="banner">
-            <div class="bannerContent">
-                <div class="bannerText">
-                    Welcome Back to Rate My Classes!
-                </div>
-            </div>
+            Welcome Back to Rate My Classes!
         </div>
         <div class="form">
             <form name="loginInputs">
                 <h2>
-                    Login!
+                    Login
                 </h2>
-                <input type="text" name="email" placeholder="Email. . .">
-                <input type="text" name="password" placeholder="Password. . .">
+                <input type="email" name="email" placeholder="Email. . .">
+                <input type="password" name="password" placeholder="Password. . .">
                 <button>Login</button>
                 <p class="message">Don't have an account? <a href="#">Create one here!</a></p>
                 <p class="message"><a href="#">I forgot my password</a></p>
