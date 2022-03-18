@@ -1,0 +1,28 @@
+{% extends "register/login1.html" %} 
+
+{% block title %} 
+Login Here 
+{% endblock %} 
+
+{% block sidenav %}{% endblock %}
+
+{% block content %} 
+<form method="post" class="from-group">
+    <div>
+    {% csrf_token %} 
+    {{form}}
+    <!--{% for field in form %} 
+        <div class="input-group">
+            <span class="input-group-addon" style="background-color:#b77b48; color:white"><span class="glyphicon glyphicon-user"></span></span>
+            <input class="form-control" id="{{ field.id_for_label }}" maxlength="30" name="{{ field.html_name }}" value="{{ field.value }}" type="text" /> 
+            {{ field.errors }}
+        </div>
+    {% endfor %}-->
+    <button type="submit" class="btn btn-success">Login</button>
+    <br><br/>
+
+    <p>Don't have an account? <a href="/register/" class="badge badge-primary">Create one here!</a></p>
+    <p>Forgot your password? <a href="/password_reset" class="badge badge-primary">Reset it here!</a></p>
+    </div>
+</form>
+{% endblock %} 

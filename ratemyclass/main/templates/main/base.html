@@ -29,12 +29,24 @@
             .main{
                 margin-left: 160px;
                 padding: 0px 10px;
+                height: 100%;
             }
 
             .banner{
-                margin-left: 160px;
-                padding: 0px 10px;
+                top:0;
+                left:0;
+                height: 10%;
             }
+
+            .mt-0 mb-4{
+                background: #333333;
+            }
+
+            .b{
+                height: 100%;
+                background: #333333;
+            }
+
 
         </style>
 
@@ -45,15 +57,17 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        <title>Rate My Classes</title>
+        
+        <title>{% block title %}Rate My Classes{% endblock %} </title>
+       
     </head>
     <body>
         {% block sidenav %}
         <div class="sidenav">
-                <a href="/home">Home</a>
+                <a href="/">Home</a>
                 <a href="/login">Login</a>
                 <a href="/register">Register</a>
+                <a href="/logout">Logout</a>
         </div>
         {% endblock %}
         <div id="content" name="content" class="main">
@@ -61,8 +75,8 @@
                 <div class="col-8">
                     <h1 class="mt-2">Rate My Classes</h1>
                     <hr class="mt-0 mb-4">
-                    {% block content %}
-                    {% endblock %}
+                        {% block content %}
+                        {% endblock %}
                 </div>
             </div>
         </div>

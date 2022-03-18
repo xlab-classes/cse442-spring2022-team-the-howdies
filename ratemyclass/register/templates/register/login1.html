@@ -1,4 +1,4 @@
-{% extends 'main/base.html' %}
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,16 +10,34 @@
                 background: #333333;
             }
 
+            .view{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction:column;
+            }
+            
+            .form-group{
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                flex-direction: column;
+            }
+
             .form {
-                position: absolute;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                flex-direction: column;
+                /*position: absolute;*/
                 background: lightgray;
                 border-radius: 15px;
-                top: 300px;
-                left: 33%;
+                max-width: 50%;
+                /*left: 33%;
                 z-index: 1;
                 max-width: 500px;
-                width: 50%;
-                margin: auto;
+                width: 50%;*/
+                /*margin: auto;*/
                 padding: 45px;
                 text-align: center;
                 box-shadow: 0 0 20px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.24);
@@ -62,15 +80,18 @@
                 font-size: 16px;
             }
 
-            .form .loginInputs {
+            .form .registerInputs {
                 display: none;
             }
 
             .banner {
-                margin-top: 0px;
-                padding-top: 0px;
+                top:0px;
+                left:0px;
+                height:10%;
+                /*margin-top: 0px;
+                padding-top: 0px;*/
                 background: #6CBDCF;
-                padding: 16px;
+                /*padding: 16px;*/
                 
                 align-items: center;
 
@@ -83,20 +104,26 @@
         </style> 
     </head>
     <body>
-        <div class="banner">
+        <!--<div class="banner">
             Welcome Back to Rate My Classes!
-        </div>
-        <div class="form">
-            <form name="loginInputs">
-                <h2>
-                    Login
-                </h2>
-                <input type="email" name="email" placeholder="Email. . .">
-                <input type="password" name="password" placeholder="Password. . .">
-                <button>Login</button>
-                <p class="message">Don't have an account? <a href="#">Create one here!</a></p>
-                <p class="message"><a href="#">I forgot my password</a></p>
-            </form>
+        </div>-->
+        <div class="view">
+            <br></br><br></br><br></br><br></br>
+            <div class="form">
+                <h1>Login</h1>
+                {% block content %}
+                {% endblock %}
+                <!--<form name="loginInputs">
+                    <h2>
+                        Login
+                    </h2>
+                    <input type="email" name="email" placeholder="Email. . .">
+                    <input type="password" name="password" placeholder="Password. . .">
+                    <button>Login</button>
+                    <p class="message">Don't have an account? <a href="#">Create one here!</a></p>
+                    <p class="message"><a href="#">I forgot my password</a></p>
+                </form>-->
+            </div>
         </div>
     </body>
 </html>
