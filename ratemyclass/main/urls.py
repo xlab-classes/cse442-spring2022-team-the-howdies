@@ -10,7 +10,7 @@ urlpatterns = [
     path('', views.home, name="home1"),
     path('', include("django.contrib.auth.urls")),
     path("register/", reg.register, name="register"),
-    #path("password-reset/", ResetPasswordView.as_view(), name="password_reset"),
+    #irrelevant path("password-reset/", ResetPasswordView.as_view(), name="password_reset"),
 
 
     path('reset_password/',
