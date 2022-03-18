@@ -1,13 +1,14 @@
-{% extends 'main/base.html' %}
+{% extends 'register/base.html' %}
 <!DOCTYPE html>
 <html>
+    {% block content %} 
     <head>
         <title>
-            Login
+            Register
         </title>
         <style type="text/css">
             body{
-                background: #333333;
+                background: #333333
             }
 
             .form {
@@ -62,7 +63,7 @@
                 font-size: 16px;
             }
 
-            .form .loginInputs {
+            .form .registerInputs {
                 display: none;
             }
 
@@ -80,23 +81,24 @@
                 color: #FFFFFF;
                 text-align: center;
             }
-        </style> 
+        </style>
     </head>
     <body>
         <div class="banner">
-            Welcome Back to Rate My Classes!
+            Welcome to Rate My Classes!
         </div>
         <div class="form">
-            <form name="loginInputs">
+            <form name="registerInputs">
                 <h2>
-                    Login
+                    Register for a Free Account
                 </h2>
                 <input type="email" name="email" placeholder="Email. . .">
                 <input type="password" name="password" placeholder="Password. . .">
-                <button>Login</button>
-                <p class="message">Don't have an account? <a href="#">Create one here!</a></p>
-                <p class="message"><a href="#">I forgot my password</a></p>
+                <input type="password" name="verifyPassword" placeholder="Verify Password. . .">
+                <button>submit</button>
+                <p class="message">I already have an account! <a href="#">Login here</a></p>
             </form>
         </div>
     </body>
+    {% endblock %} 
 </html>
