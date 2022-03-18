@@ -3,6 +3,8 @@ from . import views
 from register import views as reg
 from register.views import ResetPasswordView
 
+from django.contrib.auth import views as auth_views
+
 urlpatterns = [
     path('home/', views.home, name="home"),
     path('', include("django.contrib.auth.urls")),
