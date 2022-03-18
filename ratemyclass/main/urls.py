@@ -7,6 +7,7 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('home/', views.home, name="home"),
+    path('', views.home, name="home1"),
     path('', include("django.contrib.auth.urls")),
     path("register/", reg.register, name="register"),
     #path("password-reset/", ResetPasswordView.as_view(), name="password_reset"),
