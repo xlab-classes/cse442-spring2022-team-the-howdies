@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'cheshire.cse.buffalo.edu',
+    '127.0.0.1'
 ]
 
 
