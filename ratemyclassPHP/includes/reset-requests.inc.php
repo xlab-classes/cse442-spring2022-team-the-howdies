@@ -11,7 +11,7 @@ if(isset($_POST["reset-request-submit"])){
     $selector = bin2hex(random_bytes(8));
     $token = random_bytes(32);
 
-    $url = "localhost/ratemyclassPHP/create-new-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
+    $url = "https://www-student.cse.buffalo.edu/CSE442-542/2022-Spring/cse-442w/cse442-spring2022-team-the-howdies/ratemyclassPHP/create-new-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
     $expires = date("U") + 1800;
 
     require 'dbh.inc.php';
