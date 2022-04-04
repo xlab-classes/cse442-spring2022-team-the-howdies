@@ -1,0 +1,28 @@
+Password reset:
+CREATE TABLE pwdReset(
+    pwdResetId int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    pwdResetEmail TEXT NOT NULL,
+    pwdResetSelector TEXT NOT NULL,
+    pwdResetToken LONGTEXT NOT NULL,
+    pwdResetExpires TEXT NOT NULL
+);
+
+users (Id is an int which is auto incremented and the primary KEY
+       Uid is the username):
+CREATE TABLE users(
+    usersId int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    usersEmail varchar(128) NOT NULL,
+    usersUid varchar(128) NOT NULL,
+    usersPwd varchar(128) NOT NULL
+);
+
+tables:
+CREATE TABLE reviews(
+    reviewsId int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    reviewsOwnerId int(11) NOT NULL,
+    reviewsClassId int(11) NOT NULL,
+    reviewsTitle TEXT NOT NULL,
+    reviewsProfessor TEXT,
+    reviewsReview LONGTEXT NOT NULL,
+    reviewsRating int(2) NOT NULL
+);
