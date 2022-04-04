@@ -63,6 +63,28 @@ function uidExists($conn, $username, $email){
     mysqli_stmt_close($stmt);
 }
 
+function invalidClassId($conn, $classId, $className){
+    $sql = "SELECT * FROM classes WHERE classId = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        header("location: ../create-review.php?className=". $className . "&classId=" . $classId . "&error=invalid");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $classId);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    if($row = mysqli_fetch_assoc($resultData)){
+        return true;
+    }else{
+        return false;
+    }
+
+    mysqli_stmt_close($stmt);
+}
+
 function createUser($conn, $email, $username, $pwd){
     $sql = "INSERT INTO users (usersEmail, usersUid, usersPwd) VALUES (?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
@@ -81,6 +103,55 @@ function createUser($conn, $email, $username, $pwd){
     //header("location: ../signup.php");
     loginUser($conn, $username, $pwd);
     exit();
+}
+
+function createReview($conn, $title, $professor, $review, $rating, $classId, $ownerId, $className){
+    $sql = "INSERT INTO reviews (reviewsTitle, reviewsProfessor, reviewsReview, reviewsRating, reviewsClassId, reviewsOwnerId, reviewsLikes, reviewsDislikes) VALUES (? ? ? ? ? ? ? ?);";
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        header("location: ../create-review.php?className=". $className . "&classId=" . $classId . "&error=invalid");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "sssiii", $title, $professor, $review, $rating, $classId, $ownerId, 0, 0);
+    mysqli_stmt_execute($stmt);
+
+    mysqli_stmt_close($stmt);
+
+    $sql = "SELECT * FROM classes WHERE classId = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        header("location: ../create-review.php?className=". $className . "&classId=" . $classId . "&error=invalid");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "i", $classId);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+    if($row != mysqli_fetch_assoc($resultData)){
+        header("location: ../create-review.php?className=". $className . "&classId=" . $classId . "&error=invalid");
+        exit();
+    }else{
+        $total = $row["classesTotalReviews"];
+        $totalScore = $row["classesRatingSum"];
+
+        $total = $total + 1;
+        $totalF = sprintf("%.2f", $total);
+        $totalScore = $totalScore + $rating;
+        $totalScoreF = sprintf("%.2f", $totalScore);
+        $newAvg = $totalScoreF / $totalF;
+
+        $sql = "UPDATE classes SET classesAvg=? AND classesTotalReviews=? AND classesRatingSum=? WHERE classesId=? VALUES (? ? ? ?);";
+        $stmt = mysqli_stmt_init($conn);
+        if(!mysqli_stmt_prepare($stmt, $sql)){
+            header("location: ../create-review.php?className=". $className . "&classId=" . $classId . "&error=invalid");
+            exit();
+        }else{
+            mysqli_stmt_bind_param($stmt, "diii", $newAvg, $total, $totalScore, $classId);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+        }
+    }
 }
 
 function emptyInputLogin($username, $pwd){

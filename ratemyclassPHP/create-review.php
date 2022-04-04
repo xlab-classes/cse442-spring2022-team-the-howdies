@@ -4,6 +4,10 @@
 
 <?php 
     session_start();
+    if(!isset($_SESSION["useruid"])){
+        header("location: /ratemyclassPHP/login.php");
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -48,13 +52,18 @@
         <section class="review-form">
             <div class="review-form-form">
                 <?php 
-                    if(isset($_GET["cname"])){
-                        echo "<h1>Submit a Review for " . $_GET["cname"] . "</h1>";
+                    $classId = $_GET["classId"];
+                    $className = $_GET["className"];
+                    $userId = $_SESSION["userid"];
+                    if(empty($classId) || empty($className)){
+                        echo "<p class='fail'>There was an error</p>";
                     }else{
-                        echo "<h1>Submit a Review</h1>";
-                    }
+                    echo "<h1>Submit a Review for " . $_GET["className"] . "</h1>";
                 ?>
                 <form action="includes/create-review.inc.php" method="post">
+                    <input type="hidden" name="classId" value="<?php echo $classId; ?>">
+                    <input type="hidden" name="className" value="<?php echo $className; ?>">
+                    <input type="hidden" name="ownerId" value="<?php echo $userId; ?>">
                     <input required type="text" name="title" placeholder="Title. . .">
                     <input type="text" name="professor" placeholder="Professor (optional). . .">
                     <textarea rows="10" name="review" placeholder="Write your review. . ."></textarea>
@@ -63,54 +72,17 @@
                     <button class="submit-btn" type="submit" name="submit">Submit</button>
                     <button class="cancel-btn" name="cancel">Cancel</button>
                 </form>
+                <?php 
+                    }
+                ?>
             </div>
 
             <?php 
                 if(isset($_GET["error"])){
-                    if($_GET["error"] == "emptyInput"){
-                        echo "<p class='fail'>Fill in all fields!</p>";
-                    }else if($_GET["error"] == "noUser"){
-                        echo "<p class='fail'>No user was found with that email/username</p>";
-                    }else if($_GET["error"] == "wrongPwd"){
-                        echo "<p class='fail'>Incorrect password</p>";
-                    }
-                }
-                if(isset($_GET["message"])){
-                    if($_GET["message"] == "pwdUpdated"){
-                        echo "<p class='success'>Your password has been updated!</p>";
+                    if($_GET["error"] == "invalid"){
+                        echo "<p class='fail'>There was an error</p>";
                     }
                 }
             ?>
         </section>
         </div>
-
-        <!--<div class="create-review-form">
-            <h1>Submit a Review</h1>
-            <div class="create-review-form-form">
-                <form action="includes/create-review.inc.php" method="post">
-                    <input type="text" name="title" placeholder="Title. . .">
-                    <input type="text" name="class-name" placeholder="Class. . .">
-                    <input type="text" name="professor" placeholder="Professor (optional). . .">
-                    <textarea name="review" placeholder="Write your review. . ."></textarea>
-                    <button type="submit" name="submit">Submit</button>
-                    <button type="submit" name="cancel">Cancel</button>
-                </form>
-            </div>
-
-            <?/*php 
-                if(isset($_GET["error"])){
-                    if($_GET["error"] == "emptyInput"){
-                        echo "<p class='fail'>Fill in all fields!</p>";
-                    }else if($_GET["error"] == "noUser"){
-                        echo "<p class='fail'>No user was found with that email/username</p>";
-                    }else if($_GET["error"] == "wrongPwd"){
-                        echo "<p class='fail'>Incorrect password</p>";
-                    }
-                }
-                if(isset($_GET["message"])){
-                    if($_GET["message"] == "pwdUpdated"){
-                        echo "<p class='success'>Your password has been updated!</p>";
-                    }
-                }
-            ?>
-        </div>-->
