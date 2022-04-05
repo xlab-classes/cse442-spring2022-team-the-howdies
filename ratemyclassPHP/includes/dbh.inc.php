@@ -6,10 +6,10 @@ $dBPassword = "";
 $dBName = "phptutorial";
 
 $serverHost = "oceanus.cse.buffalo.edu";
-$serverUsername = "dlschyke";
-$serverPassword = "50379561";
+$serverUsername = "nmtryon";
+$serverPassword = "50297962";
 $serverDbName = "cse442_2022_spring_team_w_db";
-$serverPort = "3306";
+$serverPort = 3306;
 
 //$conn = mysqli_connect($serverName, $dBUsername, $dBPassword, $dBName);
 $conn = mysqli_connect($serverHost, $serverUsername, $serverPassword, $serverDbName, $serverPort);
