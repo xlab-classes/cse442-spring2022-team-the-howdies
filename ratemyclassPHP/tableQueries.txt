@@ -16,7 +16,7 @@ CREATE TABLE users(
     usersPwd varchar(128) NOT NULL
 );
 
-tables:
+reviews:
 CREATE TABLE reviews(
     reviewsId int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
     reviewsOwnerId int(11) NOT NULL,
@@ -24,5 +24,17 @@ CREATE TABLE reviews(
     reviewsTitle TEXT NOT NULL,
     reviewsProfessor TEXT,
     reviewsReview LONGTEXT NOT NULL,
-    reviewsRating int(2) NOT NULL
+    reviewsRating int(2) NOT NULL,
+    reviewsLikes int(11) NOT NULL,
+    reviewsDislikes int(11) NOT NULL
+);
+
+classes:
+CREATE TABLE classes(
+    classesId int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    classesRatingSum int(11) NOT NULL,
+    classesTotalReviews int(11) NOT NULL,
+    classesAvg DECIMAL(4,2),
+    classesUniId int(11) NOT NULL,
+    classesName TEXT NOT NULL
 );
