@@ -29,7 +29,7 @@
                                 echo "<li><a href='profile.php'>Profile</a></li>";
                             }
                         ?>
-                        <li><a href="university-select.php">Find Reviews</a></li>
+                        <li><a href="university-select.php">Find or Create Reviews</a></li>
                         <li><a href="my-reviews.php">My Reviews</a></li>
                         <?php 
                             if(isset($_SESSION["useruid"])){
