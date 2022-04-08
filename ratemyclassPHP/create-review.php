@@ -66,7 +66,7 @@
                     <input type="hidden" name="ownerId" value="<?php echo $userId; ?>">
                     <input required type="text" name="title" placeholder="Title. . .">
                     <input type="text" name="professor" placeholder="Professor (optional). . .">
-                    <textarea rows="10" name="review" placeholder="Write your review. . ."></textarea>
+                    <textarea required rows="10" name="review" placeholder="Write your review. . ."></textarea>
                     <h3>Please rate the class out of 10</h3>
                     <input required type="number" name="rating" min="1" max="10" placeholder="Rating">
                     <button class="submit-btn" type="submit" name="submit">Submit</button>
