@@ -49,9 +49,11 @@
                 echo "<p>Hello " . $_SESSION["useruid"] . "!</p>";
             }
         ?>
-        <div class="content">
-            <h1>This is where the content goes.</h1>
-        </div>
-        </div>
-    </body>
-</html>
+        <section class="institution-search">
+            <div class="institution-search-search">
+                <h3>Enter your institution's name</h3>
+                <form action="users.php" method="GET">
+                <input id="search" type="text" placeholder="College name">
+                </form>
+            </div>
+        </section>
