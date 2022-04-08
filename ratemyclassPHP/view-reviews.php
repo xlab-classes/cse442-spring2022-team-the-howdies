@@ -8,6 +8,11 @@
         header("location: login.php");
         exit();
     }
+
+    function onClickHandler($classId, $className){
+        header("location: create-review.php?classId=".$classId."&className=".$className);
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -86,11 +91,12 @@
                     ?>
                     <div class="view-review-header">
                         <p>Showing Reviews for <?php echo $className; ?></p>
-                        <input class="leave-review-button" type="submit" value="Review">
+                        <input class="leave-review-button" type="submit" value="Review" onClick=<?php onClickHandler($classId, $className); ?>/>
                     </div>
                     <div class="user-review-list">
                         <?php
-                        for ($x = 0; $x < 10; $x++){
+                        $resultLength = mysqli_num_rows($postData);
+                        for ($x = 0; $x < $resultLength; $x++){
                             $row = mysqli_fetch_assoc($postData);
                             $reviewsOwnerId = $row["reviewsOwnerId"];
                             $reviewsRating = $row["reviewsRating"];
