@@ -91,7 +91,7 @@
                     ?>
                     <div class="view-review-header">
                         <p>Showing Reviews for <?php echo $className; ?></p>
-                        <input class="leave-review-button" type="submit" value="Review" onClick=<?php onClickHandler($classId, $className); ?>/>
+                        <input class="leave-review-button" type="submit" value="Review"/>
                     </div>
                     <div class="user-review-list">
                         <?php
