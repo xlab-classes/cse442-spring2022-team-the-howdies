@@ -88,13 +88,15 @@ li a:hover:not(.active) {
   flex-direction: column;
   height: 600px;
   text-align: center;
-  align-content: center;
-  justify-content: center;
+  align-items: flex-start;
   background-image: url("../images/school.avif");
   background-repeat: no-repeat;
 }
 
 .university-search-search{
+  display: flex;
+  flex-direction: column;
+  align-content: start;
   border-radius: 30px;
   padding: 20px;
   width:30%;
