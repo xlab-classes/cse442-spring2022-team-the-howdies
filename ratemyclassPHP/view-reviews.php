@@ -67,39 +67,41 @@
                         // $reviewsReview = $_GET[""];
                     ?>
                     <div class="view-review-header">
-                        <p>Showing Reviews for TEMP<?php //echo $classId; ?></p>
+                        <p>Showing Reviews for HWD119: Introduction to the Howdie<?php //echo $classId; ?></p>
                         <input class="leave-review-button" type="submit" value="Review">
                     </div>
                     <div class="user-review-list">
                         <?php
-                            // for entry in entries:
-                            //     professor = entry.professor
-                            //     echo <entire post template>
+                        for ($x = 0; $x < 10; $x++){
                         ?>
                         <div class="user-review">
                             <div class="user-review-header">
                                 <div class="user-review-author">
                                     <label>User:</label>
-                                    <p>TEMP</p>
+                                    <p>Mr. Howdie</p>
                                 </div>
                                 <div class="user-review-year">
                                     <label>Year:</label>
-                                    <p>TEMP</p>
+                                    <p>Senior</p>
                                 </div>
                                 <div class="user-review-rating">
                                     <label>Rating:</label>
-                                    <p>TEMP</p>
+                                    <p>5/5</p>
                                 </div>
                             </div>
                             <div class="user-review-professor">
                                 <label>Professor:</label>
-                                <p>TEMP</p>
+                                <p>Mr. Teacher Man</p>
                             </div>
                             <div class="user-review-content">
                                 <label>User Review:</label>
-                                <p>TEMP</p>
+                                <p>This is an example of what a user review would look like.</p>
                             </div>
                         </div>
+                        <br>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div>
 
