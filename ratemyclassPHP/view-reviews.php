@@ -5,7 +5,7 @@
 <?php 
     session_start();
     if(!isset($_SESSION["useruid"])){
-        header("location: /ratemyclassPHP/login.php");
+        header("location: login.php");
         exit();
     }
 ?>
@@ -52,33 +52,72 @@
             <section class="view-reviews-page">
                 <div class="view-reviews">
                     <?php
-                        // $classId = $_GET["classId"];
-                        // $class = $_GET["class"];
-                        // $userId = $_SESSION["userid"];
-                        // if(empty($classId) || empty($class)){
-                        //     echo "<p class='fail'>There was an error</p>";
-                        // }else{
-                        // echo "<h1>Submit a Review for " . $_GET["class"] . "</h1>";
+                        $classId = $_GET["classId"];
+                        $className = $_GET["className"];
+                        $userId = $_SESSION["userid"];
+                    ?>
+                    <?php
+                    
+                        require_once 'includes/dbh.inc.php';
 
-                        // $reviewsOwnerId = $_GET[""];
-                        // $reviewsYear = $_GET[""];
-                        // $reviewsRating = $_GET[""];
-                        // $reviewsProfessor = $_GET[""];
-                        // $reviewsReview = $_GET[""];
+                        $sql = "SELECT * FROM users WHERE usersId = ?;";
+                        $stmt = mysqli_stmt_init($conn);
+                        if(!mysqli_stmt_prepare($stmt, $sql)){
+                            header("location: ../signup.php?error=stmtFailed");
+                            exit();
+                        }
+                    
+                        mysqli_stmt_bind_param($stmt, "s", $userId);
+                        mysqli_stmt_execute($stmt);
+                    
+                        $currentUserData = mysqli_stmt_get_result($stmt);
+
+                        $postSQL = "SELECT * FROM reviews WHERE reviewsClassId= ?;";
+                        $poststmt = mysqli_stmt_init($conn);
+                        if(!mysqli_stmt_prepare($poststmt, $postSQL)){
+                            header("location: ../signup.php?error=stmtFailed");
+                            exit();
+                        }
+                    
+                        mysqli_stmt_bind_param($poststmt, "s", $classId);
+                        mysqli_stmt_execute($poststmt);
+                    
+                        $postData = mysqli_stmt_get_result($poststmt);
                     ?>
                     <div class="view-review-header">
-                        <p>Showing Reviews for HWD119: Introduction to the Howdie<?php //echo $classId; ?></p>
+                        <p>Showing Reviews for <?php echo $className; ?></p>
                         <input class="leave-review-button" type="submit" value="Review">
                     </div>
                     <div class="user-review-list">
                         <?php
                         for ($x = 0; $x < 10; $x++){
+                            $row = mysqli_fetch_assoc($postData);
+                            $reviewsOwnerId = $row["reviewsOwnerId"];
+                            $reviewsRating = $row["reviewsRating"];
+                            $reviewsProfessor = $row["reviewsProfessor"];
+                            $reviewsReview = $row["reviewsReview"];
+
+                            
+                            $sql = "SELECT * FROM users WHERE usersId = ?;";
+                            $stmt = mysqli_stmt_init($conn);
+                            if(!mysqli_stmt_prepare($stmt, $sql)){
+                                header("location: ../signup.php?error=stmtFailed");
+                                exit();
+                            }
+                        
+                            mysqli_stmt_bind_param($stmt, "s", $reviewsOwnerId);
+                            mysqli_stmt_execute($stmt);
+                        
+                            $reviewAuthorData = mysqli_stmt_get_result($stmt);
+                            $authorRow = mysqli_fetch_assoc($reviewAuthorData);
+                            $reviewsAuthorName = $authorRow["usersUid"]
+
                         ?>
                         <div class="user-review">
                             <div class="user-review-header">
                                 <div class="user-review-author">
                                     <label>User:</label>
-                                    <p>Mr. Howdie</p>
+                                    <p><?php echo $reviewsAuthorName; ?></p>
                                 </div>
                                 <div class="user-review-year">
                                     <label>Year:</label>
@@ -86,16 +125,16 @@
                                 </div>
                                 <div class="user-review-rating">
                                     <label>Rating:</label>
-                                    <p>5/5</p>
+                                    <p><?php echo $reviewsRating; ?> / 10</p>
                                 </div>
                             </div>
                             <div class="user-review-professor">
                                 <label>Professor:</label>
-                                <p>Mr. Teacher Man</p>
+                                <p><?php echo $reviewsProfessor; ?></p>
                             </div>
                             <div class="user-review-content">
                                 <label>User Review:</label>
-                                <p>This is an example of what a user review would look like.</p>
+                                <p><?php echo $reviewsReview; ?></p>
                             </div>
                         </div>
                         <br>
