@@ -49,11 +49,11 @@
                 echo "<p>Hello " . $_SESSION["useruid"] . "!</p>";
             }
         ?>
-        <section class="institution-search">
-            <div class="institution-search-search">
-                <h3>Enter your institution's name</h3>
+        <section class="university-search">
+            <div class="university-search-search">
+                <h3>Enter your university name</h3>
                 <form action="users.php" method="GET">
-                <input id="search" type="text" placeholder="College name">
+                <input id="search" type="text" placeholder="University name">
                 </form>
             </div>
         </section>

@@ -83,7 +83,7 @@ li a:hover:not(.active) {
   background-color: #000;
 }
 
-.institution-search{
+.university-search{
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -92,7 +92,7 @@ li a:hover:not(.active) {
   margin: 15px;
 }
 
-.institution-search-search{
+.university-search-search{
   border-radius: 30px;
   padding: 20px;
   width:30%;
@@ -100,7 +100,7 @@ li a:hover:not(.active) {
   background-color: white;
 }
 
-.institution-search-search input[type=text],input[type=password],input[type=email]{
+.university-search-search input[type=text],input[type=password],input[type=email]{
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
