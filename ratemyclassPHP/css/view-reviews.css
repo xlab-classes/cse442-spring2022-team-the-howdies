@@ -85,3 +85,13 @@
     font-family: sans-serif;
 }
 
+.user-review-reactions {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%; 
+}
+
+.user-review-likes,
+.user-review-dislikes {
+    display: flex;
+}

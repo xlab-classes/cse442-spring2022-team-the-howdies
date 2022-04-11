@@ -142,6 +142,16 @@
                                 <label>User Review:</label>
                                 <p><?php echo $reviewsReview; ?></p>
                             </div>
+                            <div class="user-review-reactions">
+                                <div class=user-review-likes>
+                                    <img src="images/like.png" alt="" width=30 height=30>
+                                    <p> 0 </p>
+                                </div>
+                                <div class=user-review-dislikes>
+                                    <img src="images/dislike.png" alt="" width=30 height=25>
+                                    <p> 0 </p>
+                                </div>
+                            </div>
                         </div>
                         <br>
                         <?php
