@@ -14,7 +14,7 @@
         exit();
     }
 
-        // if liked, removes that like; else, adds a like
+    // if liked, removes that like; else, adds a like
     // if disliked, removes the dislike
 
     function onClickLikes($userId, $reviewId, $conn){
