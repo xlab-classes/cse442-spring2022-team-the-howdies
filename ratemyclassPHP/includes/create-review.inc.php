@@ -95,7 +95,7 @@ if(isset($_POST["submit"])){
     }
 
     createReview($conn, $title, $professor1, $review, $rating, $classId, $ownerId, $className);
-    header("location: ../create-review.php?className=". $className . "&classId=" . $classId);
+    header("location: ../view-reviews.php?className=". $className . "&classId=" . $classId);
     exit();
 }else{
     header("location: ../index.php");
