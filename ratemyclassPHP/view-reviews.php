@@ -193,6 +193,18 @@
         <meta charset="utf-8">
         <title>PHP Project</title>
         <link rel="stylesheet" href="css/view-reviews.css">
+        <script>
+            function test(){
+                console.log("testing. . .");
+            }
+            function submitLikes(user, reviewID, conn){
+                var result = "<?php onClickLikes(user, reviewID, conn); ?>"
+            }
+
+            function submitDislikes(user, reviewID, conn){
+                var result = "<?php onClickDislikes(user, reviewID, conn); ?>"
+            }
+        </script>
     </head>
 
     <body>
@@ -270,10 +282,13 @@
                         $resultLength = mysqli_num_rows($postData);
                         for ($x = 0; $x < $resultLength; $x++){
                             $row = mysqli_fetch_assoc($postData);
+                            $reviewsId = $row["reviewsId"];
                             $reviewsOwnerId = $row["reviewsOwnerId"];
                             $reviewsRating = $row["reviewsRating"];
                             $reviewsProfessor = $row["reviewsProfessor"];
                             $reviewsReview = $row["reviewsReview"];
+                            $reviewsLikes = getLikes($reviewsId, $conn);
+                            $reviewsDislikes = getDislikes($reviewsId, $conn);
 
                             
                             $sql = "SELECT * FROM users WHERE usersId = ?;";
@@ -316,12 +331,12 @@
                             </div>
                             <div class="user-review-reactions">
                                 <div class=user-review-likes>
-                                    <img src="images/like.png" alt="" width=30 height=30>
-                                    <p> 0 </p>
+                                    <img src="images/like.png" alt="" width=30 height=30 onClick="submitLikes(<?php echo $reviewId?>, <?php echo $userId?>, <?php echo $conn?>)">
+                                    <p><?php echo $reviewsLikes; ?></p>
                                 </div>
                                 <div class=user-review-dislikes>
-                                    <img src="images/dislike.png" alt="" width=30 height=25>
-                                    <p> 0 </p>
+                                    <img src="images/dislike.png" alt="" width=30 height=25 onClick="submitDislikes(<?php echo $reviewId?>, <?php echo $userId?>, <?php echo $conn?>)">
+                                    <p><?php echo $reviewsDislikes; ?></p>
                                 </div>
                             </div>
                         </div>
