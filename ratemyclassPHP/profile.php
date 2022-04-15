@@ -68,6 +68,7 @@
             $picPath = $row["usersPicPath"];
             $bio = $row["usersBio"];
             $un = $row["usersUid"];
+            $year = $row["usersYear"];
 
         ?>
 
@@ -97,6 +98,8 @@
 
             <div class="bio-container">
                 <form action="includes/profile-bio.inc.php" method="POST" enctype="multipart/form-data">
+                    <label for="year" class="label-text2">Enter your current year:</label><br>
+                    <input name="year-input" type="text" value=<?php echo $year; ?>></input><br>
                     <label for="bio" class="label-text2">Enter your bio here:</label>
                     <input type="hidden" name="uId" value="<?php echo $userId; ?>">
                     <textarea name="bio-input" class="textarea1"><?php echo $bio; ?></textarea>
