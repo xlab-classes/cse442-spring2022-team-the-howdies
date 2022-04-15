@@ -88,9 +88,10 @@ li a:hover:not(.active) {
   flex-direction: column;
   height: 600px;
   text-align: center;
-  align-items: flex-start;
-  background-image: url("../images/school.avif");
-  background-repeat: no-repeat;
+  align-content: center;
+  justify-content: center;
+  /*background-image: url("../images/school.avif");
+  background-repeat: no-repeat; */
 }
 
 .university-search-search{
