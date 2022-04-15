@@ -80,6 +80,19 @@
                     <input type="file" name="profilePicture" class="pfpbutton">
                     <input type="submit" name="submit" value="Change!" class="pfpbutton">
                 </form>
+                <?php 
+                if(isset($_GET["error"])){
+                    if($_GET["error"] == "error"){
+                        echo "<p class='fail'>There was an error</p>";
+                    }
+                    if($_GET["error"] == "notReal"){
+                        echo "<p class='fail'>The file needs to be a .jpg, .png, or .jpeg</p>";
+                    }
+                    if($_GET["error"] == "fileType"){
+                        echo "<p class='fail'>The file needs to be a .jpg, .png, or .jpeg</p>";
+                    }
+                }
+                ?>
             </div>
 
             <div class="bio-container">
@@ -90,5 +103,12 @@
                     <input type="submit" name="submit"/>
                 </form>
             </div>
+            <?php 
+                if(isset($_GET["success"])){
+                    if($_GET["success"] == "success"){
+                        echo "<p class='success'>Your profile has been updated!</p>";
+                    }
+                }
+                ?>
         </div>
         </div>

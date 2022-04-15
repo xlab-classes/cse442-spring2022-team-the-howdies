@@ -15,7 +15,8 @@ if(isset($_POST["submit"])){
         mysqli_stmt_bind_param($stmt, "ss", $bio, $id);
         mysqli_stmt_execute($stmt);
     }
-    header("location: ../profile.php");
+    header("location: ../profile.php?success=success");
+    exit();
 }else{
     header("location: ../profile.php");
     exit();
