@@ -317,12 +317,10 @@
 
                         $createHeader = "create-review.php?className=" . $className . "&classId=" . $classId;
                     ?>
-                    <div class="view-review-header">
+                    <form class="view-review-header" action=<?php echo $createHeader; ?> method="post">
                         <p>Showing Reviews for <?php echo $className; ?></p>
-                        <form action=<?php echo $createHeader; ?> method="post">
-                            <input class="leave-review-button" type="submit" value="Review"/>
-                        </form>
-                    </div>
+                        <input class="leave-review-button" type="submit" value="Review"/>
+                    </form>
                     <div class="user-review-list">
                         <?php
                         $resultLength = mysqli_num_rows($postData);

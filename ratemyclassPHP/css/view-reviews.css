@@ -24,16 +24,25 @@
     font-family:'Courier New', Courier, monospace;
 }
 
+.view-review-header form {
+    width: 100%;
+}
+
 .view-review-header input {
     background-color: #6CBDCF;
     border-radius: 12px;
     border: none;
     font-size: large;
 
-    width: 10%;
+    width: 100%;
     height: 45px;
     margin-top: 17px;
     margin-left: 5%;
+    cursor: pointer;
+}
+
+.view-review-header input:hover {
+    background-color: #528f9c;
 }
 
 .user-review-list {
