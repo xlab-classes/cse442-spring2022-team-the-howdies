@@ -90,8 +90,8 @@ li a:hover:not(.active) {
   text-align: center;
   align-content: center;
   justify-content: center;
-  background-image: url("../images/school.avif");
-  background-repeat: no-repeat;
+  /*background-image: url("../images/school.avif");
+  background-repeat: no-repeat; */
 }
 
 .university-search-search{
