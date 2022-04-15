@@ -1,0 +1,106 @@
+@import "style.css";
+
+.view-reviews-page {
+    width: 100%;
+}
+
+.view-reviews {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.view-review-header {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+}
+
+.view-review-header p {
+    color: white;
+    font-size: x-large;
+
+    font-family:'Courier New', Courier, monospace;
+}
+
+.view-review-header form {
+    width: 100%;
+}
+
+.view-review-header input {
+    background-color: #6CBDCF;
+    border-radius: 12px;
+    border: none;
+    font-size: large;
+
+    width: 100%;
+    height: 45px;
+    margin-top: 17px;
+    margin-left: 5%;
+    cursor: pointer;
+}
+
+.view-review-header input:hover {
+    background-color: #528f9c;
+}
+
+.user-review-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.user-review {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #444444;
+    border-radius: 12px;
+    padding: 20px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.user-review-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.user-review-author,
+.user-review-year,
+.user-review-rating,
+.user-review-professor,
+.user-review-content {
+    display: flex;
+    justify-content: flex-start;
+    padding-bottom: 20px;
+}
+
+.user-review label {
+    color: white;
+    font-size: x-large;
+    font-weight: 1000;
+    font-family: sans-serif;
+}
+
+.user-review p {
+    color: white;
+    font-size: x-large;
+    margin: 0;
+    margin-top: 5px;
+    padding-left: 5px;
+    font-family: sans-serif;
+}
+
+.user-review-reactions {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%; 
+}
+
+.user-review-likes,
+.user-review-dislikes {
+    display: flex;
+}

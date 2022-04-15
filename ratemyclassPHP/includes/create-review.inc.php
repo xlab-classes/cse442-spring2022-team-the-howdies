@@ -1,7 +1,7 @@
 <?php 
 
 function invalidClassId($conn, $classId, $className){
-    $sql = "SELECT * FROM classes WHERE classId = ?;";
+    $sql = "SELECT * FROM classes WHERE classesId = ?;";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){
         header("location: ../create-review.php?className=". $className . "&classId=" . $classId . "&error=invalid");
@@ -19,36 +19,32 @@ function invalidClassId($conn, $classId, $className){
         return false;
     }
 
-    mysqli_stmt_close($stmt);
+    //mysqli_stmt_close($stmt);
 }
 
 function createReview($conn, $title, $professor, $review, $rating, $classId, $ownerId, $className){
-    $sql = "INSERT INTO reviews (reviewsTitle, reviewsProfessor, reviewsReview, reviewsRating, reviewsClassId, reviewsOwnerId, reviewsLikes, reviewsDislikes) VALUES (? ? ? ? ? ? ? ?);";
+    $sql = "INSERT INTO reviews (reviewsTitle, reviewsProfessor, reviewsReview, reviewsRating, reviewsClassId, reviewsOwnerId, reviewsLikes, reviewsDislikes) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){
         header("location: ../create-review.php?className=". $className . "&classId=" . $classId . "&error=invalid");
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "sssiii", $title, $professor, $review, $rating, $classId, $ownerId, 0, 0);
+    $z = 0;
+
+    mysqli_stmt_bind_param($stmt, "ssssssss", $title, $professor, $review, $rating, $classId, $ownerId, $z, $z);
     mysqli_stmt_execute($stmt);
 
-    mysqli_stmt_close($stmt);
-
-    $sql = "SELECT * FROM classes WHERE classId = ?;";
+    $sql = "SELECT * FROM classes WHERE classesId = ?;";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){
         header("location: ../create-review.php?className=". $className . "&classId=" . $classId . "&error=invalid");
         exit();
     }
-    mysqli_stmt_bind_param($stmt, "i", $classId);
+    mysqli_stmt_bind_param($stmt, "s", $classId);
     mysqli_stmt_execute($stmt);
-
     $resultData = mysqli_stmt_get_result($stmt);
-    if($row != mysqli_fetch_assoc($resultData)){
-        header("location: ../create-review.php?className=". $className . "&classId=" . $classId . "&error=invalid");
-        exit();
-    }else{
+    if($row = mysqli_fetch_assoc($resultData)){
         $total = $row["classesTotalReviews"];
         $totalScore = $row["classesRatingSum"];
 
@@ -57,22 +53,25 @@ function createReview($conn, $title, $professor, $review, $rating, $classId, $ow
         $totalScore = $totalScore + $rating;
         $totalScoreF = sprintf("%.2f", $totalScore);
         $newAvg = $totalScoreF / $totalF;
+        //$newAvg = 1.0;
 
-        $sql = "UPDATE classes SET classesAvg=? AND classesTotalReviews=? AND classesRatingSum=? WHERE classesId=? VALUES (? ? ? ?);";
+        $sql = "UPDATE classes SET classesAvg=?, classesTotalReviews=?, classesRatingSum=? WHERE classesId=?;";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $sql)){
             header("location: ../create-review.php?className=". $className . "&classId=" . $classId . "&error=invalid");
             exit();
-        }else{
-            mysqli_stmt_bind_param($stmt, "diii", $newAvg, $total, $totalScore, $classId);
-            mysqli_stmt_execute($stmt);
-            mysqli_stmt_close($stmt);
         }
+        mysqli_stmt_bind_param($stmt, "dsss", $newAvg, $total, $totalScore, $classId);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+    }else{
+        header("location: ../create-review.php?className=". $className . "&classId=" . $classId . "&error=invalid");
+        exit();
     }
 }
 
 if(isset($_POST["submit"])){
-    $title = $_POST["title"];
+    $title = "title";
     $professor = $_POST["professor"];
     $review = $_POST["review"];
     $rating = $_POST["rating"];
@@ -80,15 +79,25 @@ if(isset($_POST["submit"])){
     $className = $_POST["className"];
     $ownerId = $_POST["ownerId"];
 
+    $professor1;
+    if($professor == ""){
+        $professor1 = "N/A";
+    }else{
+        $professor1 = $professor;
+    }
+
     require_once 'dbh.inc.php';
     //require_once 'functions.inc.php';
 
-    if(invalidClassId($conn, $classId, $className) !== false){
+    if(invalidClassId($conn, $classId, $className) == false){
         header("location: ../create-review.php?className=". $className . "&classId=" . $classId . "&error=invalid");
         exit();
     }
 
-    createReview($conn, $title, $professor, $review, $rating, $classId, $ownerId, $className);
+    createReview($conn, $title, $professor1, $review, $rating, $classId, $ownerId, $className);
+//     header("location: ../create-review.php?className=". $className . "&classId=" . $classId);
+    header("location: ../view-reviews.php?className=". $className . "&classId=" . $classId);
+    exit();
 }else{
     header("location: ../index.php");
     exit();
