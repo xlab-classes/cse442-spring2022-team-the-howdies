@@ -13,6 +13,10 @@
         header("location: create-review.php?classId=".$classId."&className=".$className);
         exit();
     }
+
+    function testphpfunc($temp){
+        echo $temp;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -21,21 +25,195 @@
         <meta charset="utf-8">
         <title>PHP Project</title>
         <link rel="stylesheet" href="css/view-reviews.css">
-        <script>
-            function test(){
-                console.log("testing. . .");
-            }
-            function submitLikes(user, reviewID, conn){
-                var result = "<?php onClickLikes(user, reviewID, conn); ?>"
-            }
-
-            function submitDislikes(user, reviewID, conn){
-                var result = "<?php onClickDislikes(user, reviewID, conn); ?>"
-            }
-        </script>
     </head>
 
     <body>
+
+    <script>
+        function onlikeClick(reviewID){
+            alert("Inside function: " + reviewID);
+            // console.log(reviewID);
+            // console.log(conn);
+            <?php $temp = "testing"; ?>
+            // var result = "executed";
+            // alert(result);
+            return false;
+        }
+    </script>
+
+    <?php
+        // if liked, removes that like; else, adds a like
+        // if disliked, removes the dislike
+
+        function onClickLikes($userId, $reviewId, $conn){
+            $sql = "SELECT * FROM likes WHERE likesReviewId = ? AND likesUserId = ?;";
+            $stmt = mysqli_stmt_init($conn);
+            if(!mysqli_stmt_prepare($stmt, $sql)){
+                //error 
+                exit();
+            }
+            mysqli_stmt_bind_param($stmt, "ss", $reviewId, $userId);
+            mysqli_stmt_execute($stmt);
+
+            $result = mysqli_stmt_get_result($stmt);
+            $resultLength = mysqli_num_rows($result);
+
+            if($resultLength == 0){
+                $sql = "INSERT INTO likes (likesReviewId, likesUserId) VALUES (?, ?);";
+                $stmt = mysqli_stmt_init($conn);
+                if(!mysqli_stmt_prepare($stmt, $sql)){
+                    //error 
+                    exit();
+                }
+                mysqli_stmt_bind_param($stmt, "ss", $reviewId, $userId);
+                mysqli_stmt_execute($stmt);
+            }else{
+                $row = mysqli_fetch_assoc($result);
+                $likeId = $row["likesId"];
+                $sql = "DELETE FROM likes WHERE likesId=?;";
+                $stmt = mysqli_stmt_init($conn);
+                if(!mysqli_stmt_prepare($stmt, $sql)){
+                    //error 
+                    exit();
+                }
+                mysqli_stmt_bind_param($stmt, "s", $likeId);
+                mysqli_stmt_execute($stmt);
+            }
+
+            $sql = "SELECT * FROM dislikes WHERE dislikesReviewId = ? AND dislikesUserId = ?;";
+            $stmt = mysqli_stmt_init($conn);
+            if(!mysqli_stmt_prepare($stmt, $sql)){
+                //error 
+                exit();
+            }
+            mysqli_stmt_bind_param($stmt, "ss", $reviewId, $userId);
+            mysqli_stmt_execute($stmt);
+
+            $result = mysqli_stmt_get_result($stmt);
+            $resultLength = mysqli_num_rows($result);
+
+            if($resultLength != 0){
+                $row = mysqli_fetch_assoc($result);
+                $dislikeId = $row["dislikesId"];
+                $sql = "DELETE FROM dislikes WHERE dislikesId=?;";
+                $stmt = mysqli_stmt_init($conn);
+                if(!mysqli_stmt_prepare($stmt, $sql)){
+                    //error 
+                    exit();
+                }
+                mysqli_stmt_bind_param($stmt, "s", $dislikeId);
+                mysqli_stmt_execute($stmt);
+            }
+
+            $likes = getLikes($reviewId, $conn);
+            $dislikes = getDislikes($reviewId, $conn);
+
+            return [$likes, $dislikes];
+        }
+
+        // if disliked, removes that dislike; else, adds a dislike
+        // if liked, removes the like
+
+        function onClickDislikes($userId, $reviewId, $conn){
+            $sql = "SELECT * FROM dislikes WHERE dislikesReviewId = ? AND dislikesUserId = ?;";
+            $stmt = mysqli_stmt_init($conn);
+            if(!mysqli_stmt_prepare($stmt, $sql)){
+                //error 
+                exit();
+            }
+            mysqli_stmt_bind_param($stmt, "ss", $reviewId, $userId);
+            mysqli_stmt_execute($stmt);
+
+            $result = mysqli_stmt_get_result($stmt);
+            $resultLength = mysqli_num_rows($result);
+
+            if($resultLength == 0){
+                $sql = "INSERT INTO dislikes (dislikesReviewId, dislikesUserId) VALUES (?, ?);";
+                $stmt = mysqli_stmt_init($conn);
+                if(!mysqli_stmt_prepare($stmt, $sql)){
+                    //error 
+                    exit();
+                }
+                mysqli_stmt_bind_param($stmt, "ss", $reviewId, $userId);
+                mysqli_stmt_execute($stmt);
+            }else{
+                $row = mysqli_fetch_assoc($result);
+                $dislikeId = $row["dislikesId"];
+                $sql = "DELETE FROM dislikes WHERE dislikesId=?;";
+                $stmt = mysqli_stmt_init($conn);
+                if(!mysqli_stmt_prepare($stmt, $sql)){
+                    //error 
+                    exit();
+                }
+                mysqli_stmt_bind_param($stmt, "s", $dislikeId);
+                mysqli_stmt_execute($stmt);
+            }
+
+            $sql = "SELECT * FROM likes WHERE likesReviewId = ? AND likesUserId = ?;";
+            $stmt = mysqli_stmt_init($conn);
+            if(!mysqli_stmt_prepare($stmt, $sql)){
+                //error 
+                exit();
+            }
+            mysqli_stmt_bind_param($stmt, "ss", $reviewId, $userId);
+            mysqli_stmt_execute($stmt);
+
+            $result = mysqli_stmt_get_result($stmt);
+            $resultLength = mysqli_num_rows($result);
+
+            if($resultLength != 0){
+                $row = mysqli_fetch_assoc($result);
+                $likeId = $row["likesId"];
+                $sql = "DELETE FROM likes WHERE likesId=?;";
+                $stmt = mysqli_stmt_init($conn);
+                if(!mysqli_stmt_prepare($stmt, $sql)){
+                    //error 
+                    exit();
+                }
+                mysqli_stmt_bind_param($stmt, "s", $likeId);
+                mysqli_stmt_execute($stmt);
+            }
+
+            $likes = getLikes($reviewId, $conn);
+            $dislikes = getDislikes($reviewId, $conn);
+
+            return [$likes, $dislikes];
+        }
+
+        // returns number of likes/dislikes on that review
+
+        function getLikes($reviewId, $conn){
+            $sql = "SELECT * FROM likes WHERE likesReviewId = ?;";
+            $stmt = mysqli_stmt_init($conn);
+            if(!mysqli_stmt_prepare($stmt, $sql)){
+                //error 
+                exit();
+            }
+            mysqli_stmt_bind_param($stmt, "s", $reviewId);
+            mysqli_stmt_execute($stmt);
+
+            $result = mysqli_stmt_get_result($stmt);
+            $resultLength = mysqli_num_rows($result);
+
+            return $resultLength;
+        }
+
+        function getDislikes($reviewId, $conn){
+            $sql = "SELECT * FROM dislikes WHERE dislikesReviewId = ?;";
+            $stmt = mysqli_stmt_init($conn);
+            if(!mysqli_stmt_prepare($stmt, $sql)){
+                //error 
+                exit();
+            }
+            mysqli_stmt_bind_param($stmt, "s", $reviewId);
+            mysqli_stmt_execute($stmt);
+
+            $result = mysqli_stmt_get_result($stmt);
+            $resultLength = mysqli_num_rows($result);
+
+            return $resultLength;
+        }
+    ?>
         <div class="view">
             <div class="header">
                 <div class="header-name">
@@ -115,8 +293,6 @@
                             $reviewsRating = $row["reviewsRating"];
                             $reviewsProfessor = $row["reviewsProfessor"];
                             $reviewsReview = $row["reviewsReview"];
-                            $reviewsLikes = getLikes($reviewsId, $conn);
-                            $reviewsDislikes = getDislikes($reviewsId, $conn);
 
                             
                             $sql = "SELECT * FROM users WHERE usersId = ?;";
@@ -159,12 +335,19 @@
                             </div>
                             <div class="user-review-reactions">
                                 <div class=user-review-likes>
-                                    <img src="images/like.png" alt="" width=30 height=30 onClick="submitLikes(<?php echo $reviewId?>, <?php echo $userId?>, <?php echo $conn?>)">
-                                    <p><?php echo $reviewsLikes; ?></p>
+                                    <?php
+                                    $testvar = "hello world";
+                                    ?>
+                                    <script>
+                    
+                                        var reviewID = "<?php echo $reviewsId ?>";
+                                    </script>
+                                    <img src="images/like.png" alt="" width=30 height=30 onClick="onlikeClick(reviewID)">
+                                    <p>0</p>
                                 </div>
                                 <div class=user-review-dislikes>
-                                    <img src="images/dislike.png" alt="" width=30 height=25 onClick="submitDislikes(<?php echo $reviewId?>, <?php echo $userId?>, <?php echo $conn?>)">
-                                    <p><?php echo $reviewsDislikes; ?></p>
+                                    <img src="images/dislike.png" alt="" width=30 height=25 >
+                                    <p>0</p>
                                 </div>
                             </div>
                         </div>
