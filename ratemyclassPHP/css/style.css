@@ -21,7 +21,9 @@
 }
 
 .header{
-  /*position: fixed;
+  /*
+  ALREADY COMMENTED OUT
+  position: fixed;
   top: 0;
   left: 0;*/
   width: 100%;
@@ -90,7 +92,9 @@ li a:hover:not(.active) {
   text-align: center;
   align-content: center;
   justify-content: center;
-  /*background-image: url("../images/school.avif");
+  /*
+  ALREADY COMMENTED OUT
+  background-image: url("../images/school.avif");
   background-repeat: no-repeat; */
 }
 
@@ -184,7 +188,140 @@ li a:hover:not(.active) {
     margin: 8px 0;
     display: inline-block;
     box-sizing: border-box;
+/*  START PROFILE CSS MERGE CONFLICT  */
+/*     font-size: 14pt;
+    text-align: center; */
+  }
+
+/*   .login-form{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    margin: 15px;
+  }
+
+  .login-form-form{
+    border-radius: 30px;
+    padding: 20px;
+    width: 30%;
+    background-color: gray;
+    margin: auto;
+  }
+
+  .login-form-form h3,h2,h1{
+    text-align: center;
+  }
+
+  .reset-link{
+    margin-left: auto;
+    margin-right: right;
+  }
+
+.login-form-form input[type=text],input[type=password],input[type=email]{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  box-sizing: border-box;
 }
+
+.login-form-form button{
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.login-form-form button:hover{
+  opacity: 0.6;
+}
+
+body{
+    background-color: #333;
+}
+
+.profile-picture {
+  display: flex;
+  height: 200px;
+  width: 200px;
+  margin-bottom: 40px;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  background-color: #333333;
+}
+
+.profile-picture-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #333333;
+  align-items: center;
+}
+
+.bio-container {
+  align-items: center;
+  width: 80%;
+  background-color: #545451;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 5%;
+}
+
+.pfpbutton {
+  margin: 10px;
+  background-color: #6CBDCF;
+  padding: 10px;
+  border: none;
+  text-decoration: underline;
+}
+
+.pfpbutton:hover {
+  background-color: #5da4b4;
+}
+
+.pfpform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.label-text1 {
+  color: white;
+  font-size: 50px;
+}
+
+.label-text2 {
+  color: white;
+  font-size: 20px;
+}
+
+.textarea1 {
+  display: flex;
+  width: 100%;
+  height: 150px;
+  resize: none;
+  color: white;
+  background-color: #545451;
+  border: solid;
+  border-color: black;
+  border-width: 2px;
+  border-radius: 10px;
+} */
+
+/* PROFILE CSS MERGE CONFLICT END */
+
+/* DEV CSS MERGE CONFLICT START */
 
 .review-form-form textarea{
     width: 100%;
