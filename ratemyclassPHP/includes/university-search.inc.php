@@ -13,7 +13,9 @@ function uniIdExists($conn, $uniName) {
 
     $resultData = mysqli_stmt_get_result($stmt);
 
-    if($row = mysqli_fetch_assoc($resultData)){
+    $row = mysqli_fetch_assoc($resultData);
+
+    if($row){
         return $row;
     }else{
         $result = false;
@@ -34,7 +36,25 @@ function selectUniversity($conn, $uniName) {
     session_start();
     $_SESSION["uniId"] = $uniIdExists["universityID"];
     $_SESSION["uniName"] = $uniName;
-    header("location: ../index.php?uniName=" . $uniName);
+
+    $sql = "SELECT * FROM universities WHERE universityName = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        header("location: ../index.php?error=stmtFailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $uniName);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    $row = mysqli_fetch_assoc($resultData);
+    $uniId = $row["universityID"];
+
+    //header("location: ../index.php?uniName=" . $uniName);
+    header("location: ../view-classes?uniName=" . $uniName . "&uniId=". $uniId);
+    exit();
 }
 
 if(isset($_POST["submit"])){
