@@ -44,14 +44,20 @@
             </nav>
         </div>
 
-        <?php 
+        <?php
             if(isset($_SESSION["useruid"])){
                 echo "<p>Hello " . $_SESSION["useruid"] . "!</p>";
             }
+            if(isset($_SESSION["uniId"])) {
+                echo "<p>Your university is: " . $_SESSION["uniName"] . "</p>";
+            }
         ?>
-        <div class="content">
-            <h1>This is where the content goes.</h1>
-        </div>
-        </div>
-    </body>
-</html>
+        <section class="university-search">
+            <div class="university-search-search">
+                <h3>Enter your university name</h3>
+                <form action="includes/university-search.inc.php" method="post">
+                <input id="search" type="text" name="uniName" placeholder="University name">
+                <button type="search" name="submit">Search</button>
+                </form>
+            </div>
+        </section>
