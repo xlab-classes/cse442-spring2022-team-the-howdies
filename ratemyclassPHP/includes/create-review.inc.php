@@ -71,7 +71,7 @@ function createReview($conn, $title, $professor, $review, $rating, $classId, $ow
 }
 
 if(isset($_POST["submit"])){
-    $title = $_POST["title"];
+    $title = "title";
     $professor = $_POST["professor"];
     $review = $_POST["review"];
     $rating = $_POST["rating"];

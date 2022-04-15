@@ -70,10 +70,11 @@
                     <h3>Please rate the class out of 10</h3>
                     <input required type="number" name="rating" min="1" max="10" placeholder="Rating">
                     <button class="submit-btn" type="submit" name="submit">Submit</button>
-                    <form action=<?php echo $cancelHeader; ?> method="post">
+                    
+                </form>
+                <form action=<?php echo $cancelHeader; ?> method="post">
                         <button type="submit" class="cancel-btn" name="cancel">Cancel</button>
                     </from>
-                </form>
                 <?php 
                     }
                 ?>

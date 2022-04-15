@@ -346,6 +346,10 @@
                             $reviewAuthorData = mysqli_stmt_get_result($stmt);
                             $authorRow = mysqli_fetch_assoc($reviewAuthorData);
                             $reviewsAuthorName = $authorRow["usersUid"];
+                            $year = $authorRow["usersYear"];
+                            if($year == ""){
+                                $year = "N/A";
+                            }
 
                             $likeId = "p" . $reviewsId;
                             $dislikeId = "pDL" . $reviewsId;
@@ -362,7 +366,7 @@
                                 </div>
                                 <div class="user-review-year">
                                     <label>Year:</label>
-                                    <p>Senior</p>
+                                    <p><?php echo $year; ?></p>
                                 </div>
                                 <div class="user-review-rating">
                                     <label>Rating:</label>
