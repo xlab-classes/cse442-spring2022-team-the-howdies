@@ -28,17 +28,53 @@
     </head>
 
     <body>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-        function onlikeClick(reviewID){
-            alert("Inside function: " + reviewID);
-            // console.log(reviewID);
-            // console.log(conn);
-            <?php $temp = "testing"; ?>
-            // var result = "executed";
-            // alert(result);
-            return false;
-        }
+        $(document).ready(function(){
+            $("img.like").click(function(){
+                var reviewID = $(this).attr('id');
+                var userID = $(this).attr('user');
+                $.ajax({
+                    url: "includes/ajax-likes.php",
+                    type: "post",
+                    dataType: 'json',
+                    data: {review_id: reviewID, user_id: userID, l_d: "l"},
+                    success:function(result){
+                        console.log("RESULT: " + result);
+                        console.log(result.likes);
+                        console.log(result.dislikes);
+                        console.log(result.id);
+                        console.log(result.uId);
+                        console.log("#p"+reviewID);
+                        var lText = $("#p"+reviewID).text(result.likes);
+                        var dText = $("#pDL"+reviewID).text(result.dislikes);
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function(){
+            $("img.dislike").click(function(){
+                var reviewID = $(this).attr('id');
+                var userID = $(this).attr('user');
+                $.ajax({
+                    url: "includes/ajax-likes.php",
+                    type: "post",
+                    dataType: 'json',
+                    data: {review_id: reviewID, user_id: userID, l_d: "d"},
+                    success:function(result){
+                        console.log("RESULT: " + result);
+                        console.log(result.likes);
+                        console.log(result.dislikes);
+                        console.log(result.id);
+                        console.log(result.uId);
+                        console.log("#p"+reviewID);
+                        var lText = $("#p"+reviewID).text(result.likes);
+                        var dText = $("#pDL"+reviewID).text(result.dislikes);
+                    }
+                });
+            });
+        });
     </script>
 
     <?php
@@ -278,10 +314,14 @@
                         mysqli_stmt_execute($poststmt);
                     
                         $postData = mysqli_stmt_get_result($poststmt);
+
+                        $createHeader = "create-review.php?className=" . $className . "&classId=" . $classId;
                     ?>
                     <div class="view-review-header">
                         <p>Showing Reviews for <?php echo $className; ?></p>
-                        <input class="leave-review-button" type="submit" value="Review"/>
+                        <form action=<?php echo $createHeader; ?> method="post">
+                            <input class="leave-review-button" type="submit" value="Review"/>
+                        </form>
                     </div>
                     <div class="user-review-list">
                         <?php
@@ -307,7 +347,13 @@
                         
                             $reviewAuthorData = mysqli_stmt_get_result($stmt);
                             $authorRow = mysqli_fetch_assoc($reviewAuthorData);
-                            $reviewsAuthorName = $authorRow["usersUid"]
+                            $reviewsAuthorName = $authorRow["usersUid"];
+
+                            $likeId = "p" . $reviewsId;
+                            $dislikeId = "pDL" . $reviewsId;
+
+                            $likes = getLikes($reviewsId, $conn);
+                            $dislikes = getDislikes($reviewsId, $conn);
 
                         ?>
                         <div class="user-review">
@@ -335,19 +381,15 @@
                             </div>
                             <div class="user-review-reactions">
                                 <div class=user-review-likes>
-                                    <?php
-                                    $testvar = "hello world";
-                                    ?>
-                                    <script>
-                    
-                                        var reviewID = "<?php echo $reviewsId ?>";
-                                    </script>
-                                    <img src="images/like.png" alt="" width=30 height=30 onClick="onlikeClick(reviewID)">
-                                    <p>0</p>
+                                    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+                                        var reviewID = "";
+                                    </script>-->
+                                    <img class="like" user=<?php echo $userId; ?> id=<?php echo $reviewsId; ?> src="images/like.png" alt="" width=30 height=30>
+                                    <p id=<?php echo $likeId; ?> ><?php echo $likes; ?></p>
                                 </div>
                                 <div class=user-review-dislikes>
-                                    <img src="images/dislike.png" alt="" width=30 height=25 >
-                                    <p>0</p>
+                                    <img class="dislike" user=<?php echo $userId; ?> id=<?php echo $reviewsId; ?> src="images/dislike.png" alt="" width=30 height=25 >
+                                    <p id=<?php echo $dislikeId; ?>><?php echo $dislikes; ?></p>
                                 </div>
                             </div>
                         </div>
