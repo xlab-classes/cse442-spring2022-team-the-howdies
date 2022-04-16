@@ -106,7 +106,7 @@ li a:hover:not(.active) {
   padding: 20px;
   width:30%;
   margin: auto;
-  background-color: white;
+  background-color: #545451;
 }
 
 .university-search-search input[type=text],input[type=password],input[type=email]{
@@ -180,6 +180,28 @@ li a:hover:not(.active) {
 
 .review-form h1,h2,h3{
   text-align: center;
+}
+
+#searchbar-title {
+  color: white;
+  font-size: 30px;
+}
+
+.university-search-search input {
+  border-radius: 10px;
+  border: none;
+  background-color: #333333;
+}
+
+.university-search-search input::placeholder {
+  color: white;
+}
+
+#searchbar-submit-btn {
+  background-color: #6CBDCF;
+  border-radius: 10px;
+  border: none;
+  height: 30px;
 }
 
 .review-form-form input[type=text]{

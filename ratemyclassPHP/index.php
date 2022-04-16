@@ -54,10 +54,10 @@
         ?>
         <section class="university-search">
             <div class="university-search-search">
-                <h3>Enter your university name</h3>
+                <h3 id="searchbar-title">Enter your university name</h3>
                 <form action="includes/university-search.inc.php" method="post">
                 <input id="search" type="text" name="uniName" placeholder="University name">
-                <button type="search" name="submit">Search</button>
+                <button id="searchbar-submit-btn" type="search" name="submit">Search</button>
                 </form>
             </div>
         </section>
