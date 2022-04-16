@@ -15,7 +15,7 @@
     <head>
         <meta charset="utf-8">
         <title>PHP Project</title>
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/profile.css">
     </head>
 
     <body>
@@ -75,35 +75,17 @@
         <div class="profile-container">
             <div class="profile-picture-container">
                 <h2 class="label-text1"><?php echo $un; ?></h2>
-                <img src="<?php echo $picPath; ?>" class="profile-picture"></img>
-                <form action="includes/profile-img.inc.php" method="POST" enctype="multipart/form-data" class="pfpform">
-                    <input type="hidden" name="uId" value="<?php echo $userId; ?>">
-                    <input type="file" name="profilePicture" class="pfpbutton">
-                    <input type="submit" name="submit" value="Change!" class="pfpbutton">
-                </form>
-                <?php 
-                if(isset($_GET["error"])){
-                    if($_GET["error"] == "error"){
-                        echo "<p class='fail'>There was an error</p>";
-                    }
-                    if($_GET["error"] == "notReal"){
-                        echo "<p class='fail'>The file needs to be a .jpg, .png, or .jpeg</p>";
-                    }
-                    if($_GET["error"] == "fileType"){
-                        echo "<p class='fail'>The file needs to be a .jpg, .png, or .jpeg</p>";
-                    }
-                }
-                ?>
+                <img src="images/pfp.png" class="profile-picture"></img>
             </div>
 
             <div class="bio-container">
                 <form action="includes/profile-bio.inc.php" method="POST" enctype="multipart/form-data">
-                    <label for="year" class="label-text2">Enter your current year:</label><br>
-                    <input name="year-input" type="text" value=<?php echo $year; ?>></input><br>
-                    <label for="bio" class="label-text2">Enter your bio here:</label>
+                    <label for="year-input-field" class="label-text2">Current Academic Year:</label><br>
+                    <input id="year-input-field" name="year-input" type="text" value=<?php echo $year; ?>></input><br>
+                    <label for="bio-input-field" class="label-text2">About Me:</label>
                     <input type="hidden" name="uId" value="<?php echo $userId; ?>">
-                    <textarea name="bio-input" class="textarea1"><?php echo $bio; ?></textarea>
-                    <input type="submit" name="submit"/>
+                    <textarea id="bio-input-field" name="bio-input" class="textarea1"><?php echo $bio; ?></textarea>
+                    <input id="bio-submit-btn" type="submit" name="submit"/>
                 </form>
             </div>
             <?php 
