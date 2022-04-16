@@ -106,7 +106,7 @@ li a:hover:not(.active) {
   padding: 20px;
   width:30%;
   margin: auto;
-  background-color: white;
+  background-color: #545451;
 }
 
 .university-search-search input[type=text],input[type=password],input[type=email]{
@@ -182,6 +182,29 @@ li a:hover:not(.active) {
   text-align: center;
 }
 
+#searchbar-title {
+  color: white;
+  font-size: 30px;
+}
+
+.university-search-search input {
+  border-radius: 10px;
+  border: none;
+  background-color: #333333;
+  color: white;
+}
+
+.university-search-search input::placeholder {
+  color: white;
+}
+
+#searchbar-submit-btn {
+  background-color: #6CBDCF;
+  border-radius: 10px;
+  border: none;
+  height: 30px;
+}
+
 .review-form-form input[type=text]{
     width: 100%;
     padding: 12px 20px;
@@ -193,7 +216,7 @@ li a:hover:not(.active) {
     text-align: center; */
   }
 
-/*   .login-form{
+  .login-form{
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -245,79 +268,6 @@ li a:hover:not(.active) {
 body{
     background-color: #333;
 }
-
-.profile-picture {
-  display: flex;
-  height: 200px;
-  width: 200px;
-  margin-bottom: 40px;
-}
-
-.profile-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  background-color: #333333;
-}
-
-.profile-picture-container {
-  display: flex;
-  flex-direction: column;
-  background-color: #333333;
-  align-items: center;
-}
-
-.bio-container {
-  align-items: center;
-  width: 80%;
-  background-color: #545451;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 5%;
-}
-
-.pfpbutton {
-  margin: 10px;
-  background-color: #6CBDCF;
-  padding: 10px;
-  border: none;
-  text-decoration: underline;
-}
-
-.pfpbutton:hover {
-  background-color: #5da4b4;
-}
-
-.pfpform {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.label-text1 {
-  color: white;
-  font-size: 50px;
-}
-
-.label-text2 {
-  color: white;
-  font-size: 20px;
-}
-
-.textarea1 {
-  display: flex;
-  width: 100%;
-  height: 150px;
-  resize: none;
-  color: white;
-  background-color: #545451;
-  border: solid;
-  border-color: black;
-  border-width: 2px;
-  border-radius: 10px;
-} */
 
 /* PROFILE CSS MERGE CONFLICT END */
 

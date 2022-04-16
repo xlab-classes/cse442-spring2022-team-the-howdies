@@ -1,0 +1,115 @@
+@import "style.css";
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    background-color: #333333;
+  }
+
+  /* contains pfp, and username */
+  .profile-picture-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #333333;
+    align-items: center;
+  }
+
+
+  /* username style */
+  .label-text1 {
+    color: white;
+    font-size: 50px;
+  }
+
+  .profile-picture {
+    display: flex;
+    height: 200px;
+    width: 200px;
+    margin-bottom: 40px;
+  }
+
+  /* contains year and bio */
+  .bio-container {
+    align-items: center;
+    width: 80%;
+    background-color: #545451;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 5%;
+  }
+
+  .bio-container form {
+      width: 100%;
+  }
+
+  .label-text2 {
+    color: white;
+    font-size: 20px;
+  }
+
+  #year-input-field {
+      width: 100%;
+      height: 50px;
+      border-radius: 10px;
+      border: white;
+      background-color: #333333;
+      color: white;
+      padding: 5px;
+      margin-bottom: 15px;
+      font-size: 16px;
+  }
+
+  .textarea1 {
+    display: flex;
+    width: 100%;
+    height: 150px;
+    resize: none;
+    color: white;
+    background-color:#333333;
+    border: none;
+    padding: 5px;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+  }
+
+  #bio-submit-btn {
+      background-color: #6CBDCF;
+      border: none;
+      height: 40px;
+      width: 80px;
+      border-radius: 10px;
+      cursor: pointer;
+      color: white;
+  }
+
+  #bio-submit-btn:hover {
+      background-color: #528f9c;
+  }
+
+  /* 
+  REMOVED, custom pfp, may add back later 
+  */
+  
+  /* .pfpform {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pfpbutton {
+    margin: 10px;
+    background-color: #6CBDCF;
+    padding: 10px;
+    border: none;
+    text-decoration: underline;
+  }
+  
+  .pfpbutton:hover {
+    background-color: #5da4b4;
+  } */

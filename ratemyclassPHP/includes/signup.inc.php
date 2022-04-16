@@ -44,7 +44,7 @@ function uidExists($conn, $username, $email){
 }
 
 function createUser($conn, $email, $username, $pwd){
-    $sql = "INSERT INTO users (usersEmail, usersUid, usersPwd, usersPicPath, usersBio) VALUES (?, ?, ?, ?, ?);";
+    $sql = "INSERT INTO users (usersEmail, usersUid, usersPwd, usersPicPath, usersBio, usersYear) VALUES (?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){
         header("location: ../signup.php?error=stmtFailed");
@@ -54,8 +54,9 @@ function createUser($conn, $email, $username, $pwd){
     $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
     $picPath = "images/pfp.png";
     $bio = "No bio";
+    $year = "No year";
 
-    mysqli_stmt_bind_param($stmt, "sssss", $email, $username, $hashedPwd, $picPath, $bio);
+    mysqli_stmt_bind_param($stmt, "sssss", $email, $username, $hashedPwd, $picPath, $bio, $year);
     mysqli_stmt_execute($stmt);
 
     mysqli_stmt_close($stmt);
