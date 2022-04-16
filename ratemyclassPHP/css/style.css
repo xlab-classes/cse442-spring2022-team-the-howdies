@@ -191,6 +191,7 @@ li a:hover:not(.active) {
   border-radius: 10px;
   border: none;
   background-color: #333333;
+  color: white;
 }
 
 .university-search-search input::placeholder {
