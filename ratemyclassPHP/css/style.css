@@ -193,7 +193,7 @@ li a:hover:not(.active) {
     text-align: center; */
   }
 
-/*   .login-form{
+  .login-form{
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -317,7 +317,7 @@ body{
   border-color: black;
   border-width: 2px;
   border-radius: 10px;
-} */
+}
 
 /* PROFILE CSS MERGE CONFLICT END */
 
