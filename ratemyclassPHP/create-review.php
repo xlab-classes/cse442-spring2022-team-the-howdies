@@ -59,19 +59,22 @@
                         echo "<p class='fail'>There was an error</p>";
                     }else{
                     echo "<h1>Submit a Review for " . $_GET["className"] . "</h1>";
+                    $cancelHeader = "view-reviews.php?className=" . $className . "&classId=" . $classId;
                 ?>
                 <form action="includes/create-review.inc.php" method="post">
                     <input type="hidden" name="classId" value="<?php echo $classId; ?>">
                     <input type="hidden" name="className" value="<?php echo $className; ?>">
                     <input type="hidden" name="ownerId" value="<?php echo $userId; ?>">
-                    <input required type="text" name="title" placeholder="Title. . .">
                     <input type="text" name="professor" placeholder="Professor (optional). . .">
                     <textarea required rows="10" name="review" placeholder="Write your review. . ."></textarea>
                     <h3>Please rate the class out of 10</h3>
                     <input required type="number" name="rating" min="1" max="10" placeholder="Rating">
                     <button class="submit-btn" type="submit" name="submit">Submit</button>
-                    <button class="cancel-btn" name="cancel">Cancel</button>
+                    
                 </form>
+                <form action=<?php echo $cancelHeader; ?> method="post">
+                        <button type="submit" class="cancel-btn" name="cancel">Cancel</button>
+                    </from>
                 <?php 
                     }
                 ?>

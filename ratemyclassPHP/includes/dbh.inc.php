@@ -6,8 +6,8 @@ $dBPassword = "";
 $dBName = "phptutorial";
 
 $serverHost = "oceanus.cse.buffalo.edu";
-$serverUsername = "nmtryon";
-$serverPassword = "50297962";
+$serverUsername = "brstrozy";
+$serverPassword = "50302046";
 $serverDbName = "cse442_2022_spring_team_w_db";
 $serverPort = 3306;
 
