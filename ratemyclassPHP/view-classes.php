@@ -91,7 +91,6 @@
                     </div>
                     <div class="class-display-box">
                         <div class="class-sortby-box">
-                            <button type="submit">Sort by</button>
                         </div>
                         <div class="class-display-list">
                         <?php
@@ -124,17 +123,15 @@
                         <form action=<?php echo $header; ?> method="post">
                         <div class="class-display-template">
                             <div class="class-header">
-                                    <label>Class Name:</label>
-                                    <p><?php echo $className; ?></p>
-                                    <Label>Average Rating:</label>
-                                    <p><?php echo $classAvg; ?></p>
+                                    <a class="class-name-link"href="#">Class Name</a>
+                                    <p id="avg-rating">Avg. Rating: <?php echo $classAvg; ?>/10</p>
                             </div>
                             <div class="class-content">
-                                    <label>Class Total Reviews:</label>
-                                    <p><?php echo $classNum; ?></p>
-                                    <Label>Class Rating Sum:</label>
-                                    <p><?php echo $classSum; ?></p>
-                                    <button type="submit">View Reviews</button>
+                                <div class="class-info">
+                                    <p id="total-ratings">Class Total Reviews: <?php echo $classNum; ?></p>
+                                    <p id="rating-sum">Class Rating Sum: <?php echo $classSum; ?></p>
+                                </div>
+                                <!-- <button type="submit">View Reviews</button> -->
                             </div>
                         </div>
                         </form>

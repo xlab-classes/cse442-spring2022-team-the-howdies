@@ -36,6 +36,7 @@
     font-size: 36px;
     color: white;
     margin: 0;
+    padding-bottom: 10px;
 }
 
 /* Class List Box sortby/individual classes */
@@ -46,12 +47,65 @@
     width: 98%;
     background-color: #333333;
     border-radius: 20px;
+    padding-top: 10px;
 }
 
 .class-sortby-box {
-    width: 95%;
+    display: flex;
+    justify-content: flex-end;
+    width: 98%;
 }
 
 .class-display-list {
-    width: 95%;
+    width: 98%;
+}
+
+/* Individual class style */
+
+.class-display-template {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Class name and Averate Rating */
+.class-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.class-name-link:link,
+.class-name-link:visited,
+.class-name-link:active {
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+}
+
+.class-name-link:hover {
+    color: white;
+    font-size: 24px;
+    text-decoration: underline;
+}
+
+#avg-rating {
+    color: white;
+}
+
+
+/* Additional Class info, total reviews, rating sum, description, etc */
+.class-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.class-info {
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+}
+
+#total-ratings,
+#rating-sum {
+    color: white;
 }
