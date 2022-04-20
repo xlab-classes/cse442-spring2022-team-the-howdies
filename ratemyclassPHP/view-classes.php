@@ -15,7 +15,7 @@
     <head>
         <meta charset="utf-8">
         <title>PHP Project</title>
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/view-classes.css">
     </head>
 
     <body>
@@ -49,8 +49,9 @@
             </div>
 
 
-            <section class="view-reviews-page">
-                <div class="view-reviews">
+            <!-- vc short for view classes -->
+            <section class="vc-page">
+                <div class="vc-display-box">
                     <?php
                         $uniId = $_GET["uniId"];
                         $uniName = $_GET["uniName"];
@@ -84,10 +85,14 @@
                     
                         //$postData = mysqli_stmt_get_result($poststmt);
                     ?>
-                    <div class="view-review-header">
-                        <p>Showing Classes for <?php echo $uniName; ?></p>
+                    <div class="vc-header">
+                        <p id="vc-header-intro">You are now viewing courses from: </p>
+                        <p id="vc-header-uniname">University Name</p>
                     </div>
-                    <div class="user-review-list">
+                    <div class="class-display-box">
+                        <div class="class-sortby-box">
+                        </div>
+                        <div class="class-display-list">
                         <?php
                         $resultLength = mysqli_num_rows($postData);
                         for ($x = 0; $x < $resultLength; $x++){
@@ -116,19 +121,17 @@
 
                         ?>
                         <form action=<?php echo $header; ?> method="post">
-                        <div class="user-review">
-                            <div class="user-review-header">
-                                <div class="user-review-author">
-                                    <label>Class Name:</label>
-                                    <p><?php echo $className; ?></p>
-                                    <Label>Average Rating:</label>
-                                    <p><?php echo $classAvg; ?></p>
-                                    <label>Class Total Reviews:</label>
-                                    <p><?php echo $classNum; ?></p>
-                                    <Label>Class Rating Sum:</label>
-                                    <p><?php echo $classSum; ?></p>
-                                    <button type="submit">View Reviews</button>
+                        <div class="class-display-template">
+                            <div class="class-header">
+                                    <a class="class-name-link"href="#">Class Name</a>
+                                    <p id="avg-rating">Avg. Rating: <?php echo $classAvg; ?>/10</p>
+                            </div>
+                            <div class="class-content">
+                                <div class="class-info">
+                                    <p id="total-ratings">Class Total Reviews: <?php echo $classNum; ?></p>
+                                    <p id="rating-sum">Class Rating Sum: <?php echo $classSum; ?></p>
                                 </div>
+                                <!-- <button type="submit">View Reviews</button> -->
                             </div>
                         </div>
                         </form>
@@ -136,6 +139,7 @@
                         <?php
                         }
                         ?>
+                    </div>
                     </div>
                 </div>
 

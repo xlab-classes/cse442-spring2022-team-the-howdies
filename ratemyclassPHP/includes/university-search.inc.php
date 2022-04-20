@@ -53,7 +53,7 @@ function selectUniversity($conn, $uniName) {
     $uniId = $row["universityID"];
 
     //header("location: ../index.php?uniName=" . $uniName);
-    header("location: ../view-classes?uniName=" . $uniName . "&uniId=". $uniId);
+    header("location: ../view-classes.php?uniName=" . $uniName . "&uniId=". $uniId);
     exit();
 }
 
