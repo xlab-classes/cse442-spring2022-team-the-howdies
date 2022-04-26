@@ -51,6 +51,12 @@
             if(isset($_SESSION["uniId"])) {
                 echo "<p>Your university is: " . $_SESSION["uniName"] . "</p>";
             }
+            if(isset($_SESSION["uniId"])) {
+                echo "<p>Your university is: " . $_SESSION["uniName"] . "</p>";
+            }
+            if(isset($_SESSION["userid"])) {
+                echo "<p>Your userId is: " . $_SESSION["userid"] . "</p>";
+            }
         ?>
         <section class="university-search">
             <div class="university-search-search">

@@ -21,7 +21,7 @@ function invalidReviewId($conn, $reviewId) {
 }
 
 function createComment($conn, $userId, $reviewId, $comment) {
-    $sql = "INSERT INTO comments (userId, reviewId, comment) VALUES (?, ?, ?);";
+    $sql = "INSERT INTO comments (commentUserId, commentReviewId, commentComment) VALUES (?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){
         header("location: ../view-post.php?reviewId=". $reviewId . "&error=invalid");
@@ -31,7 +31,7 @@ function createComment($conn, $userId, $reviewId, $comment) {
     mysqli_stmt_bind_param($stmt, "sss", $userId, $reviewId, $comment);
     mysqli_stmt_execute($stmt);
 
-    $sql = "SELECT * FROM reviews WHERE reviewId = ?;";
+    $sql = "SELECT * FROM reviews WHERE reviewsId = ?;";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){
         header("location: ../view-post.php?reviewId=". $reviewId . "&error=invalid");
@@ -45,7 +45,7 @@ function createComment($conn, $userId, $reviewId, $comment) {
 
         $total = $total + 1;
 
-        $sql = "UPDATE reviews SET reviewsTotalComments=? WHERE classesId=?;";
+        $sql = "UPDATE reviews SET reviewsTotalComments=? WHERE reviewsId=?;";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $sql)){
             header("location: ../view-post.php?reviewId=". $reviewId . "&error=invalid");
@@ -61,9 +61,10 @@ function createComment($conn, $userId, $reviewId, $comment) {
 }
 
 if(isset($_POST["submit"])){
-    $userId = $_POST["userId"];
+    session_start();
+    $userId = $_SESSION["userid"];
     $reviewId = $_POST["reviewId"];
-    $comment = $_POST["comment"];
+    $comment = $_POST["comment"]; 
 
     require_once 'dbh.inc.php';
     //require_once 'functions.inc.php';
@@ -72,6 +73,8 @@ if(isset($_POST["submit"])){
         header("location: ../view-post.php?reviewId=". $reviewId . "&error=invalid");
         exit();
     }
+
+    createComment($conn, $userId, $reviewId, $comment);
 }else{
     header("location: ../view-post.php?reviewId=". $reviewId);
     exit();
