@@ -87,7 +87,7 @@
                     ?>
                     <div class="vc-header">
                         <p id="vc-header-intro">You are now viewing courses from: </p>
-                        <p id="vc-header-uniname">University Name</p>
+                        <p id="vc-header-uniname"><?php echo $uniName?></p>
                     </div>
                     <div class="class-display-box">
                         <div class="class-sortby-box">
@@ -123,7 +123,7 @@
                         <form action=<?php echo $header; ?> method="post">
                         <div class="class-display-template">
                             <div class="class-header">
-                                    <a class="class-name-link"href="#">Class Name</a>
+                                    <a class="class-name-link"href="<?php echo $header?>"><?php echo $className?></a>
                                     <p id="avg-rating">Avg. Rating: <?php echo $classAvg; ?>/10</p>
                             </div>
                             <div class="class-content">
