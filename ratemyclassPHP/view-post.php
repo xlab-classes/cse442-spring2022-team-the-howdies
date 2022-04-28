@@ -24,8 +24,10 @@
     <head>
         <meta charset="utf-8">
         <title>PHP Project</title>
-        <link rel="stylesheet" href="css/view-reviews.css">
+        <link rel="stylesheet" href="css/style.css">
     </head>
+
+    <style ref="css/view-post.css"></style>
 
     <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -250,6 +252,8 @@
             return $resultLength;
         }
     ?>
+    <link rel="stylesheet" href="css/view-post.css" type="text/css">
+    <link rel="stylesheet" href="css/view-reviews.css" type="text/css">
         <div class="view">
             <div class="header">
                 <div class="header-name">
@@ -277,129 +281,56 @@
                         </ul>
                     </div>
                 </nav>
-            </div>
 
-
-            <section class="view-reviews-page">
-                <div class="view-reviews">
-                    <?php
-                        $classId = $_GET["classId"];
-                        $className = $_GET["className"];
-                        $userId = $_SESSION["userid"];
-                    ?>
-                    <?php
-                    
-                        require_once 'includes/dbh.inc.php';
-
-                        $sql = "SELECT * FROM users WHERE usersId = ?;";
-                        $stmt = mysqli_stmt_init($conn);
-                        if(!mysqli_stmt_prepare($stmt, $sql)){
-                            header("location: ../signup.php?error=stmtFailed");
-                            exit();
-                        }
-                    
-                        mysqli_stmt_bind_param($stmt, "s", $userId);
-                        mysqli_stmt_execute($stmt);
-                    
-                        $currentUserData = mysqli_stmt_get_result($stmt);
-
-                        $postSQL = "SELECT * FROM reviews WHERE reviewsClassId= ?;";
-                        $poststmt = mysqli_stmt_init($conn);
-                        if(!mysqli_stmt_prepare($poststmt, $postSQL)){
-                            header("location: ../signup.php?error=stmtFailed");
-                            exit();
-                        }
-                    
-                        mysqli_stmt_bind_param($poststmt, "s", $classId);
-                        mysqli_stmt_execute($poststmt);
-                    
-                        $postData = mysqli_stmt_get_result($poststmt);
-
-                        $createHeader = "create-review.php?className=" . $className . "&classId=" . $classId;
-                    ?>
-                    <form class="view-review-header" action=<?php echo $createHeader; ?> method="post">
-                        <p>Showing Reviews for <?php echo $className; ?></p>
-                        <input class="leave-review-button" type="submit" value="Review"/>
-                    </form>
-                    <div class="user-review-list">
-                        <?php
-                        $resultLength = mysqli_num_rows($postData);
-                        for ($x = 0; $x < $resultLength; $x++){
-                            $row = mysqli_fetch_assoc($postData);
-                            $reviewsId = $row["reviewsId"];
-                            $reviewsOwnerId = $row["reviewsOwnerId"];
-                            $reviewsRating = $row["reviewsRating"];
-                            $reviewsProfessor = $row["reviewsProfessor"];
-                            $reviewsReview = $row["reviewsReview"];
-
-                            
-                            $sql = "SELECT * FROM users WHERE usersId = ?;";
-                            $stmt = mysqli_stmt_init($conn);
-                            if(!mysqli_stmt_prepare($stmt, $sql)){
-                                header("location: ../signup.php?error=stmtFailed");
-                                exit();
-                            }
-                        
-                            mysqli_stmt_bind_param($stmt, "s", $reviewsOwnerId);
-                            mysqli_stmt_execute($stmt);
-                        
-                            $reviewAuthorData = mysqli_stmt_get_result($stmt);
-                            $authorRow = mysqli_fetch_assoc($reviewAuthorData);
-                            $reviewsAuthorName = $authorRow["usersUid"];
-                            $year = $authorRow["usersYear"];
-                            if($year == ""){
-                                $year = "N/A";
-                            }
-
-                            $likeId = "p" . $reviewsId;
-                            $dislikeId = "pDL" . $reviewsId;
-
-                            $likes = getLikes($reviewsId, $conn);
-                            $dislikes = getDislikes($reviewsId, $conn);
-
-                        ?>
-                        <div class="user-review">
-                            <div class="user-review-header">
-                                <div class="user-review-author">
-                                    <label>User:</label>
-                                    <p><?php echo $reviewsAuthorName; ?></p>
-                                </div>
-                                <div class="user-review-year">
-                                    <label>Year:</label>
-                                    <p><?php echo $year; ?></p>
-                                </div>
-                                <div class="user-review-rating">
-                                    <label>Rating:</label>
-                                    <p><?php echo $reviewsRating; ?> / 10</p>
-                                </div>
+                
+                <div class="post-container">
+                    <div class="post">
+                        <div class="user-review-header">
+                            <div class="user-review-author">
+                                <label id="bold">User:</label>
+                                <p>PHP For Author</p>
                             </div>
-                            <div class="user-review-professor">
-                                <label>Professor:</label>
-                                <p><?php echo $reviewsProfessor; ?></p>
+                            <div class="user-review-year">
+                                <label id="bold">Year:</label>
+                                <p>PHP For Year</p>
                             </div>
-                            <div class="user-review-content">
-                                <label>User Review:</label>
-                                <p><?php echo $reviewsReview; ?></p>
-                            </div>
-                            <div class="user-review-reactions">
-                                <div class=user-review-likes>
-                                    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
-                                        var reviewID = "";
-                                    </script>-->
-                                    <img class="like" user=<?php echo $userId; ?> id=<?php echo $reviewsId; ?> src="images/like.png" alt="" width=30 height=30>
-                                    <p id=<?php echo $likeId; ?> ><?php echo $likes; ?></p>
-                                </div>
-                                <div class=user-review-dislikes>
-                                    <img class="dislike" user=<?php echo $userId; ?> id=<?php echo $reviewsId; ?> src="images/dislike.png" alt="" width=30 height=25 >
-                                    <p id=<?php echo $dislikeId; ?>><?php echo $dislikes; ?></p>
-                                </div>
+                            <div class="user-review-rating">
+                                <label id="bold">Rating:</label>
+                                <p>PHP For Rating</p>
                             </div>
                         </div>
-                        <br>
-                        <?php
-                        }
-                        ?>
+
+                        <div class="user-review-professor-container">
+                            <div class="user-review-professor">
+                                <label id="bold">Professor:</label>
+                                <p>PHP For Professor</p>
+                            </div>
+                        </div>
+                        <div class="user-review-content-container">
+                            <div class="user-review-content">
+                                <label id="bold">User Review:</label>
+                                <p>PHP For A User's Review</p>
+                            </div>
+                        </div>
+                        
                     </div>
+                    <hr id="break">
+                    <div class="comment-container">
+                        <p class="head1">Comments go here</p>
+                    </div>
+                </div>
+            </div>
+
+            
+            <section class="view-post-page">
+                <div class="view-post">
+                    <?php
+                        //$classId = $_GET["classId"];
+                        //$className = $_GET["className"];
+                        //$userId = $_SESSION["userid"];
+                    ?>
+                    
+                    
                 </div>
 
                 <?php 
@@ -411,3 +342,5 @@
                 ?>
             </section>
         </div>
+
+    </html>

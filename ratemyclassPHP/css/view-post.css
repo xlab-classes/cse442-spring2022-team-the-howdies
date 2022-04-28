@@ -1,0 +1,66 @@
+.head1 {
+    color: white;
+    font-size: xx-large;
+    background-color: blueviolet;
+}
+
+#bold {
+    font-weight: bold;
+}
+
+.post-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 5%;
+    justify-content: center;
+    align-items: center;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    background-color: #444444;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.user-review-author {
+    color: white;
+    font-size: 30px;
+}
+
+.user-review-year {
+    color: white;
+    font-size: 30px;
+}
+
+.user-review-rating {
+    color: white;
+    font-size: 30px;
+}
+
+.user-review-professor {
+    color: white;
+    font-size: 30px;
+}
+
+.user-review-content {
+    color: white;
+    font-size: 30px;
+}
+
+.comment-container {
+    display: flex;
+    margin-top: 10px;
+    background-color: #444444;
+    width: 90%;
+}
+
+#break {
+    width: 95%;
+    height: 5px;
+    background-color: #444444;
+    border-color: #444444;
+}
