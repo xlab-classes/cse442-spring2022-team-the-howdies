@@ -51,7 +51,14 @@
             if(isset($_SESSION["uniId"])) {
                 echo "<p>Your university is: " . $_SESSION["uniName"] . "</p>";
             }
-        ?>
+            if(isset($_GET["error"])){    
+            ?>
+
+            
+
+            <?php
+                }
+            ?>
         <section class="university-search">
             <div class="university-search-search">
                 <h3 id="searchbar-title">Enter your university name</h3>
