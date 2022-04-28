@@ -89,6 +89,7 @@
                         <p id="vc-header-intro">You are now viewing courses from: </p>
                         <p id="vc-header-uniname"><?php echo $uniName?></p>
                     </div>
+            
                     <div class="class-display-box">
                         <div class="class-sortby-box">
                         </div>
@@ -135,20 +136,36 @@
                             </div>
                         </div>
                         </form>
-                        <br>
+                        <br></br>
                         <?php
                         }
                         ?>
                     </div>
                     </div>
-                </div>
+                    
+                    <br></br>
+                    <form class="view-review-header" action="includes/add-class.inc.php" method="post">
+                        <Label class="add-class-text">Don't see your class? Add it Here!</Label><br></br>
+                        <input required name="newClassName" type="text" placeholder="Enter class name"/>
+                        <input type="hidden" name="uniId" value="<?php echo $uniId; ?>">
+                        <input type="hidden" name="uniName" value="<?php echo $uniName; ?>">
+                        <button class="leave-review-button" type="submit" name="submit" value="Add Class">Add Class</button>
+                    </form>
 
-                <?php 
+                    <?php 
                     if(isset($_GET["error"])){
                         if($_GET["error"] == "invalid"){
                             echo "<p class='fail'>There was an error</p>";
                         }
+                        if($_GET["error"] == "nameTaken"){
+                            echo "<p class='fail'>That class name is already used</p>";
+                        }
+                    }
+                    
+                    if(isset($_GET["success"])){
+                        echo "<p class='success'>Your class has been added</p>";
                     }
                 ?>
+                </div>
             </section>
         </div>
