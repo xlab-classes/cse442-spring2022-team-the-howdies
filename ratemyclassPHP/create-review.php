@@ -54,12 +54,19 @@
                 <?php 
                     $classId = $_GET["classId"];
                     $className = $_GET["className"];
+
+                    $className = str_replace("`", " ", $className);
+
                     $userId = $_SESSION["userid"];
                     if(empty($classId) || empty($className)){
                         echo "<p class='fail'>There was an error</p>";
                     }else{
-                    echo "<h1>Submit a Review for " . $_GET["className"] . "</h1>";
+                    echo "<h1>Submit a Review for " . $className . "</h1>";
+
+                    $className = str_replace(" ", "`", $className);
                     $cancelHeader = "view-reviews.php?className=" . $className . "&classId=" . $classId;
+
+                    $className = str_replace(" ", "`", $className);
                 ?>
                 <form action="includes/create-review.inc.php" method="post">
                     <input type="hidden" name="classId" value="<?php echo $classId; ?>">

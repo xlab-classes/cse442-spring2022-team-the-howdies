@@ -145,7 +145,7 @@
                     
                     <br></br>
                     <form class="view-review-header" action="includes/add-class.inc.php" method="post">
-                        <Label class="add-class-text">Don't see your class? Add it Here!</Label><br></br>
+                        <Label class="add-class-text">Don't see your class? Add it here!</Label><br></br>
                         <input required name="newClassName" type="text" placeholder="Enter class name"/>
                         <input type="hidden" name="uniId" value="<?php echo $uniId; ?>">
                         <input type="hidden" name="uniName" value="<?php echo $uniName; ?>">

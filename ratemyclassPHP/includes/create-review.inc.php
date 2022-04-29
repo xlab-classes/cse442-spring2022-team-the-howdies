@@ -23,7 +23,7 @@ function invalidClassId($conn, $classId, $className){
 }
 
 function createReview($conn, $title, $professor, $review, $rating, $classId, $ownerId, $className){
-    $sql = "INSERT INTO reviews (reviewsTitle, reviewsProfessor, reviewsReview, reviewsRating, reviewsClassId, reviewsOwnerId, reviewsLikes, reviewsDislikes) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+    $sql = "INSERT INTO reviews (reviewsTitle, reviewsProfessor, reviewsReview, reviewsRating, reviewsClassId, reviewsOwnerId, reviewsLikes, reviewsDislikes, reviewsTotalComments) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){
         header("location: ../create-review.php?className=". $className . "&classId=" . $classId . "&error=invalid");
@@ -32,7 +32,7 @@ function createReview($conn, $title, $professor, $review, $rating, $classId, $ow
 
     $z = 0;
 
-    mysqli_stmt_bind_param($stmt, "ssssssss", $title, $professor, $review, $rating, $classId, $ownerId, $z, $z);
+    mysqli_stmt_bind_param($stmt, "sssssssss", $title, $professor, $review, $rating, $classId, $ownerId, $z, $z, $z);
     mysqli_stmt_execute($stmt);
 
     $sql = "SELECT * FROM classes WHERE classesId = ?;";
