@@ -121,7 +121,7 @@
                             $header = "view-reviews.php?className=". $className . "&classId=" . $classId;
 
                         ?>
-                        <form action=<?php echo $header; ?> method="post">
+                        <form class="class-body-box" action=<?php echo $header; ?> method="post">
                         <div class="class-display-template">
                             <div class="class-header">
                                     <a class="class-name-link"href="<?php echo $header?>"><?php echo $className?></a>
@@ -136,7 +136,7 @@
                             </div>
                         </div>
                         </form>
-                        <br></br>
+                        <br>
                         <?php
                         }
                         ?>
