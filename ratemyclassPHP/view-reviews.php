@@ -393,6 +393,12 @@
                                     <img class="dislike" user=<?php echo $userId; ?> id=<?php echo $reviewsId; ?> src="images/dislike.png" alt="" width=30 height=25 >
                                     <p id=<?php echo $dislikeId; ?>><?php echo $dislikes; ?></p>
                                 </div>
+                                <div>
+                                    <form action="view-post.php" method="post">
+                                        <input type="hidden" name="reviewsId" value=<?php echo $reviewsId ?>>
+                                        <button type="submit">Comment</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                         <br>

@@ -15,7 +15,7 @@
     <head>
         <meta charset="utf-8">
         <title>PHP Project</title>
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/view-classes.css">
     </head>
 
     <body>
@@ -49,8 +49,9 @@
             </div>
 
 
-            <section class="view-reviews-page">
-                <div class="view-reviews">
+            <!-- vc short for view classes -->
+            <section class="vc-page">
+                <div class="vc-display-box">
                     <?php
                         $uniId = $_GET["uniId"];
                         $uniName = $_GET["uniName"];
@@ -84,10 +85,15 @@
                     
                         //$postData = mysqli_stmt_get_result($poststmt);
                     ?>
-                    <div class="view-review-header">
-                        <p>Showing Classes for <?php echo $uniName; ?></p>
+                    <div class="vc-header">
+                        <p id="vc-header-intro">You are now viewing courses from: </p>
+                        <p id="vc-header-uniname"><?php echo $uniName?></p>
                     </div>
-                    <div class="user-review-list">
+            
+                    <div class="class-display-box">
+                        <div class="class-sortby-box">
+                        </div>
+                        <div class="class-display-list">
                         <?php
                         $resultLength = mysqli_num_rows($postData);
                         for ($x = 0; $x < $resultLength; $x++){
@@ -116,36 +122,50 @@
 
                         ?>
                         <form action=<?php echo $header; ?> method="post">
-                        <div class="user-review">
-                            <div class="user-review-header">
-                                <div class="user-review-author">
-                                    <label>Class Name:</label>
-                                    <p><?php echo $className; ?></p>
-                                    <Label>Average Rating:</label>
-                                    <p><?php echo $classAvg; ?></p>
-                                    <label>Class Total Reviews:</label>
-                                    <p><?php echo $classNum; ?></p>
-                                    <Label>Class Rating Sum:</label>
-                                    <p><?php echo $classSum; ?></p>
-                                    <input type="hidden" id="classId" name="classId" value=<?php echo $classId?>>
-                                    <button type="submit">View Reviews</button>
+                        <div class="class-display-template">
+                            <div class="class-header">
+                                    <a class="class-name-link"href="<?php echo $header?>"><?php echo $className?></a>
+                                    <p id="avg-rating">Avg. Rating: <?php echo $classAvg; ?>/10</p>
+                            </div>
+                            <div class="class-content">
+                                <div class="class-info">
+                                    <p id="total-ratings">Class Total Reviews: <?php echo $classNum; ?></p>
+                                    <p id="rating-sum">Class Rating Sum: <?php echo $classSum; ?></p>
                                 </div>
+                                <!-- <button type="submit">View Reviews</button> -->
                             </div>
                         </div>
                         </form>
-                        <br>
+                        <br></br>
                         <?php
                         }
                         ?>
                     </div>
-                </div>
+                    </div>
+                    
+                    <br></br>
+                    <form class="view-review-header" action="includes/add-class.inc.php" method="post">
+                        <Label class="add-class-text">Don't see your class? Add it Here!</Label><br></br>
+                        <input required name="newClassName" type="text" placeholder="Enter class name"/>
+                        <input type="hidden" name="uniId" value="<?php echo $uniId; ?>">
+                        <input type="hidden" name="uniName" value="<?php echo $uniName; ?>">
+                        <button class="leave-review-button" type="submit" name="submit" value="Add Class">Add Class</button>
+                    </form>
 
-                <?php 
+                    <?php 
                     if(isset($_GET["error"])){
                         if($_GET["error"] == "invalid"){
                             echo "<p class='fail'>There was an error</p>";
                         }
+                        if($_GET["error"] == "nameTaken"){
+                            echo "<p class='fail'>That class name is already used</p>";
+                        }
+                    }
+                    
+                    if(isset($_GET["success"])){
+                        echo "<p class='success'>Your class has been added</p>";
                     }
                 ?>
+                </div>
             </section>
         </div>

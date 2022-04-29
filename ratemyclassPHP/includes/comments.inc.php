@@ -1,14 +1,14 @@
 <?php
 
-function invalidReviewId($conn, $reviewId) {
+function invalidreviewsId($conn, $reviewsId) {
     $sql = "SELECT * FROM reviews WHERE reviewsId = ?;";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){
-        header("location: ../view-post.php?reviewId=". $reviewId . "&error=invalid");
+        header("location: ../view-post.php?reviewsId=". $reviewsId . "&error=invalid");
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "s", $reviewId);
+    mysqli_stmt_bind_param($stmt, "s", $reviewsId);
     mysqli_stmt_execute($stmt);
 
     $resultData = mysqli_stmt_get_result($stmt);
@@ -20,24 +20,24 @@ function invalidReviewId($conn, $reviewId) {
     }
 }
 
-function createComment($conn, $userId, $reviewId, $comment) {
-    $sql = "INSERT INTO comments (commentUserId, commentReviewId, commentComment) VALUES (?, ?, ?);";
+function createComment($conn, $userId, $reviewsId, $comment) {
+    $sql = "INSERT INTO comments (commentUserId, commentreviewsId, commentComment) VALUES (?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){
-        header("location: ../view-post.php?reviewId=". $reviewId . "&error=invalid");
+        header("location: ../view-post.php?reviewsId=". $reviewsId . "&error=invalid");
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "sss", $userId, $reviewId, $comment);
+    mysqli_stmt_bind_param($stmt, "sss", $userId, $reviewsId, $comment);
     mysqli_stmt_execute($stmt);
 
     $sql = "SELECT * FROM reviews WHERE reviewsId = ?;";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){
-        header("location: ../view-post.php?reviewId=". $reviewId . "&error=invalid");
+        header("location: ../view-post.php?reviewsId=". $reviewsId . "&error=invalid");
         exit();
     }
-    mysqli_stmt_bind_param($stmt, "s", $reviewId);
+    mysqli_stmt_bind_param($stmt, "s", $reviewsId);
     mysqli_stmt_execute($stmt);
     $resultData = mysqli_stmt_get_result($stmt);
     if($row = mysqli_fetch_assoc($resultData)){
@@ -48,14 +48,16 @@ function createComment($conn, $userId, $reviewId, $comment) {
         $sql = "UPDATE reviews SET reviewsTotalComments=? WHERE reviewsId=?;";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $sql)){
-            header("location: ../view-post.php?reviewId=". $reviewId . "&error=invalid");
+            header("location: ../view-post.php?reviewsId=". $reviewsId . "&error=invalid");
             exit();
         }
-        mysqli_stmt_bind_param($stmt, "ss", $total, $reviewId);
+        mysqli_stmt_bind_param($stmt, "ss", $total, $reviewsId);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
+
+        header("location: ../view-post.php?reviewsId=". $reviewsId);
     }else{
-        header("location: ../view-post.php?reviewId=". $reviewId . "&error=invalid");
+        header("location: ../view-post.php?reviewsId=". $reviewsId . "&error=invalid");
         exit();
     }
 }
@@ -63,19 +65,19 @@ function createComment($conn, $userId, $reviewId, $comment) {
 if(isset($_POST["submit"])){
     session_start();
     $userId = $_SESSION["userid"];
-    $reviewId = $_POST["reviewId"];
+    $reviewsId = $_POST["reviewsId"];
     $comment = $_POST["comment"]; 
 
     require_once 'dbh.inc.php';
     //require_once 'functions.inc.php';
 
-    if(invalidReviewId($conn, $reviewId) == false){
-        header("location: ../view-post.php?reviewId=". $reviewId . "&error=invalid");
+    if(invalidreviewsId($conn, $reviewsId) == false){
+        header("location: ../view-post.php?reviewsId=". $reviewsId . "&error=invalid");
         exit();
     }
 
-    createComment($conn, $userId, $reviewId, $comment);
+    createComment($conn, $userId, $reviewsId, $comment);
 }else{
-    header("location: ../view-post.php?reviewId=". $reviewId);
+    header("location: ../view-post.php?reviewsId=". $reviewsId);
     exit();
 }
