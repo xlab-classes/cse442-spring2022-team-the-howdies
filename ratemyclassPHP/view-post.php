@@ -32,7 +32,7 @@
     <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-        $(document).ready(function(){
+        /*$(document).ready(function(){
             $("img.like").click(function(){
                 var reviewID = $(this).attr('id');
                 var userID = $(this).attr('user');
@@ -50,33 +50,10 @@
                         console.log("#p"+reviewID);
                         var lText = $("#p"+reviewID).text(result.likes);
                         var dText = $("#pDL"+reviewID).text(result.dislikes);
-                    }
+                    } 
                 });
             });
-        });
-
-        $(document).ready(function(){
-            $("img.dislike").click(function(){
-                var reviewID = $(this).attr('id');
-                var userID = $(this).attr('user');
-                $.ajax({
-                    url: "includes/ajax-likes.php",
-                    type: "post",
-                    dataType: 'json',
-                    data: {review_id: reviewID, user_id: userID, l_d: "d"},
-                    success:function(result){
-                        console.log("RESULT: " + result);
-                        console.log(result.likes);
-                        console.log(result.dislikes);
-                        console.log(result.id);
-                        console.log(result.uId);
-                        console.log("#p"+reviewID);
-                        var lText = $("#p"+reviewID).text(result.likes);
-                        var dText = $("#pDL"+reviewID).text(result.dislikes);
-                    }
-                });
-            });
-        });
+        }); */
     </script>
 
     <?php

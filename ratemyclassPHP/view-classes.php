@@ -127,6 +127,7 @@
                                     <p><?php echo $classNum; ?></p>
                                     <Label>Class Rating Sum:</label>
                                     <p><?php echo $classSum; ?></p>
+                                    <input type="hidden" id="classId" name="classId" value=<?php echo $classId?>>
                                     <button type="submit">View Reviews</button>
                                 </div>
                             </div>
