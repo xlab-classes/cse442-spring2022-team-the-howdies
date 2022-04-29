@@ -394,8 +394,10 @@
                                     <p id=<?php echo $dislikeId; ?>><?php echo $dislikes; ?></p>
                                 </div>
                                 <div>
-                                    <form action="view-post.php" method="post">
+                                    <form action="view-post.php" method="get">
                                         <input type="hidden" name="reviewsId" value=<?php echo $reviewsId ?>>
+                                        <input type="hidden" name="classId" value=<?php echo $classId ?>>
+                                        <input type="hidden" name="className" value=<?php echo $className ?>>
                                         <button type="submit">Comment</button>
                                     </form>
                                 </div>

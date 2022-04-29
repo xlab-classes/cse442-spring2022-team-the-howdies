@@ -21,7 +21,7 @@ function invalidreviewsId($conn, $reviewsId) {
 }
 
 function createComment($conn, $userId, $reviewsId, $comment) {
-    $sql = "INSERT INTO comments (commentUserId, commentreviewsId, commentComment) VALUES (?, ?, ?);";
+    $sql = "INSERT INTO comments (commentUserId, commentReviewId, commentComment) VALUES (?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){
         header("location: ../view-post.php?reviewsId=". $reviewsId . "&error=invalid");
@@ -55,7 +55,8 @@ function createComment($conn, $userId, $reviewsId, $comment) {
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
 
-        header("location: ../view-post.php?reviewsId=". $reviewsId);
+        header("location: ../view-post.php?reviewsId=". $reviewsId . "&classId=" . $_POST["classId"] . "&className=" . $_POST["className"]);
+     // header("location: create-review.php?classId=".$classId."&className=".$className);
     }else{
         header("location: ../view-post.php?reviewsId=". $reviewsId . "&error=invalid");
         exit();
@@ -63,10 +64,9 @@ function createComment($conn, $userId, $reviewsId, $comment) {
 }
 
 if(isset($_POST["submit"])){
-    session_start();
-    $userId = $_SESSION["userid"];
+    $userId = $_POST["userId"];
     $reviewsId = $_POST["reviewsId"];
-    $comment = $_POST["comment"]; 
+    $comment = $_POST["commentComment"]; 
 
     require_once 'dbh.inc.php';
     //require_once 'functions.inc.php';
@@ -78,6 +78,6 @@ if(isset($_POST["submit"])){
 
     createComment($conn, $userId, $reviewsId, $comment);
 }else{
-    header("location: ../view-post.php?reviewsId=". $reviewsId);
+    header("location: ../view-post.php?reviewsId=". $reviewsId . "NOT_SET");
     exit();
 }
