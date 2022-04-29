@@ -54,7 +54,10 @@ function createComment($conn, $userId, $reviewId, $comment) {
         mysqli_stmt_bind_param($stmt, "ss", $total, $reviewId);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
-    }else{
+    }
+    header("location: ../view-post.php?reviewId=". $reviewId);
+
+    else{
         header("location: ../view-post.php?reviewId=". $reviewId . "&error=invalid");
         exit();
     }
