@@ -261,31 +261,67 @@
 
                 
                 <div class="post-container">
+                    <?php
+                    // $resultLength = mysqli_num_rows($postData);
+                    // for ($x = 0; $x < $resultLength; $x++){
+                    //     $row = mysqli_fetch_assoc($postData);
+                    //     $reviewsId = $row["reviewsId"];
+                    //     $reviewsOwnerId = $row["reviewsOwnerId"];
+                    //     $reviewsRating = $row["reviewsRating"];
+                    //     $reviewsProfessor = $row["reviewsProfessor"];
+                    //     $reviewsReview = $row["reviewsReview"];
+
+                        
+                    //     $sql = "SELECT * FROM users WHERE usersId = ?;";
+                    //     $stmt = mysqli_stmt_init($conn);
+                    //     if(!mysqli_stmt_prepare($stmt, $sql)){
+                    //         header("location: ../signup.php?error=stmtFailed");
+                    //         exit();
+                    //     }
+                    
+                    //     mysqli_stmt_bind_param($stmt, "s", $reviewsOwnerId);
+                    //     mysqli_stmt_execute($stmt);
+                    
+                    //     $reviewAuthorData = mysqli_stmt_get_result($stmt);
+                    //     $authorRow = mysqli_fetch_assoc($reviewAuthorData);
+                    //     $reviewsAuthorName = $authorRow["usersUid"];
+                    //     $year = $authorRow["usersYear"];
+                    //     if($year == ""){
+                    //         $year = "N/A";
+                    //     }
+
+                    //     $likeId = "p" . $reviewsId;
+                    //     $dislikeId = "pDL" . $reviewsId;
+
+                    //     $likes = getLikes($reviewsId, $conn);
+                    //     $dislikes = getDislikes($reviewsId, $conn);
+
+                    ?>
                     <div class="post">
                         <div class="user-review-header">
                             <div class="user-review-author">
-                                <label id="bold">User:</label>
+                                <label class="post-label">User: </label>
                                 <p>PHP For Author</p>
                             </div>
                             <div class="user-review-year">
-                                <label id="bold">Year:</label>
+                                <label class="post-label">Year: </label>
                                 <p>PHP For Year</p>
                             </div>
                             <div class="user-review-rating">
-                                <label id="bold">Rating:</label>
+                                <label class="post-label">Rating: </label>
                                 <p>PHP For Rating</p>
                             </div>
                         </div>
 
                         <div class="user-review-professor-container">
                             <div class="user-review-professor">
-                                <label id="bold">Professor:</label>
+                                <label class="post-label">Professor: </label>
                                 <p>PHP For Professor</p>
                             </div>
                         </div>
                         <div class="user-review-content-container">
                             <div class="user-review-content">
-                                <label id="bold">User Review:</label>
+                                <label class="post-label">User Review: </label>
                                 <p>PHP For A User's Review</p>
                             </div>
                         </div>
@@ -296,6 +332,9 @@
                         <p class="head1">Comments go here</p>
                     </div>
                 </div>
+                <?php
+                // }
+                ?>
             </div>
 
             

@@ -4,8 +4,13 @@
     background-color: blueviolet;
 }
 
-#bold {
+/*  */
+
+.post-label {
+    display: flex;
     font-weight: bold;
+    margin-right: 5px;
+    align-items: center;
 }
 
 .post-container {
@@ -15,6 +20,7 @@
     margin-top: 5%;
     justify-content: center;
     align-items: center;
+    font-family: sans-serif;
 }
 
 .post {
@@ -29,6 +35,8 @@
 .user-review-author {
     color: white;
     font-size: 30px;
+    justify-content: center;
+    align-items: center;
 }
 
 .user-review-year {
