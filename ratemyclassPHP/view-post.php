@@ -371,6 +371,59 @@
                             <button name="submit" type="submit">Submit</button>
                         </form>
                     </div>
+
+                    <?php
+                    
+                        require_once 'includes/dbh.inc.php';
+
+                        $sql = "SELECT * FROM comments WHERE commentReviewId = ?;";
+                        $stmt = mysqli_stmt_init($conn);
+                        if(!mysqli_stmt_prepare($stmt, $sql)){
+                            header("location: ../signup.php?error=stmtFailed");
+                            exit();
+                        }
+                    
+                        mysqli_stmt_bind_param($stmt, "s", $_GET["reviewsId"]);
+                        mysqli_stmt_execute($stmt);
+                    
+                        $commentsData = mysqli_stmt_get_result($stmt);
+
+                        //$createHeader = "create-review.php?className=" . $className . "&classId=" . $classId;
+                    ?>
+
+                    <div class="user-review-list">
+                        <?php
+                        $resultLength = mysqli_num_rows($commentsData);
+                        for ($x = 0; $x < $resultLength; $x++){
+                            $row = mysqli_fetch_assoc($commentsData);
+                            $comment = $row["commentComment"];
+                            $commentOwnerId = $row["commentUserId"];
+
+                            
+                            $sql = "SELECT * FROM users WHERE usersId = ?;";
+                            $stmt = mysqli_stmt_init($conn);
+                            if(!mysqli_stmt_prepare($stmt, $sql)){
+                                header("location: ../signup.php?error=stmtFailed");
+                                exit();
+                            }
+                        
+                            mysqli_stmt_bind_param($stmt, "s", $commentOwnerId);
+                            mysqli_stmt_execute($stmt);
+                        
+                            $reviewAuthorData = mysqli_stmt_get_result($stmt);
+                            $authorRow = mysqli_fetch_assoc($reviewAuthorData);
+                            $reviewsAuthorName = $authorRow["usersUid"];
+
+                        ?>
+                        <div class="user-review">
+                            <label><?php echo $reviewsAuthorName; ?></label>
+                            <p><?php echo $comment; ?></p>
+                        </div>
+                        <br>
+                        <?php
+                        }
+                        ?>
+                    </div>
                 </div>
                 <?php
                 // }
