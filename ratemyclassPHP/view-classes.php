@@ -121,7 +121,7 @@
                             $header = "view-reviews.php?className=". $className . "&classId=" . $classId;
 
                         ?>
-                        <form action=<?php echo $header; ?> method="post">
+                        <form class="class-body-box" action=<?php echo $header; ?> method="post">
                         <div class="class-display-template">
                             <div class="class-header">
                                     <a class="class-name-link"href="<?php echo $header?>"><?php echo $className?></a>
@@ -136,7 +136,7 @@
                             </div>
                         </div>
                         </form>
-                        <br></br>
+                        <br>
                         <?php
                         }
                         ?>
@@ -145,7 +145,7 @@
                     
                     <br></br>
                     <form class="view-review-header" action="includes/add-class.inc.php" method="post">
-                        <Label class="add-class-text">Don't see your class? Add it Here!</Label><br></br>
+                        <Label class="add-class-text">Don't see your class? Add it here!</Label><br></br>
                         <input required name="newClassName" type="text" placeholder="Enter class name"/>
                         <input type="hidden" name="uniId" value="<?php echo $uniId; ?>">
                         <input type="hidden" name="uniName" value="<?php echo $uniName; ?>">

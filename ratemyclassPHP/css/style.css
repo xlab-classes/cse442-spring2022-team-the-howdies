@@ -10,6 +10,10 @@
   overflow-y:auto;
 }
 
+#add-university-text{
+  color: white;
+}
+
 .fail{
   color: red;
   font-style: italic;
@@ -199,6 +203,13 @@ li a:hover:not(.active) {
 }
 
 #searchbar-submit-btn {
+  background-color: #6CBDCF;
+  border-radius: 10px;
+  border: none;
+  height: 30px;
+}
+
+#add-university-btn{
   background-color: #6CBDCF;
   border-radius: 10px;
   border: none;

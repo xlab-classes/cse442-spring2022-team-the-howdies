@@ -65,7 +65,10 @@
 .class-display-template {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 98.5%;
+    background-color: #444444;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 /* Class name and Averate Rating */
