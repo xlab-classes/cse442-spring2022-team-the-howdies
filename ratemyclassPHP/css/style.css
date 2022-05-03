@@ -10,7 +10,7 @@
   overflow-y:auto;
 }
 
-#add-university-text{
+.add-university-text{
   color: white;
 }
 
@@ -24,6 +24,7 @@
   font-style: italic;
 }
 
+/* HEADER STYLING */
 .header{
   /*
   ALREADY COMMENTED OUT
@@ -33,15 +34,36 @@
   width: 100%;
   display:flex;
   flex-direction:column;
+  align-items: center;
 }
 
 .header .header-name{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  background-color: white;
+  background-color: #333333;
+  height: 100px;
+}
+
+.header .header-decor-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #545451;
+  height: 80px;
+  width: 99%;
+  border-radius: 10px;
 }
 
 .header .header-name h1{
   color: #6CBDCF;
+}
+
+/* NAVBAR STYLING */
+
+.navbar {
+  width: 99%;
 }
 
 ul {
@@ -54,6 +76,7 @@ ul {
   padding: 0;
   overflow: hidden;
   background-color: #6CBDCF;
+  border-radius: 10px;
 }
 
 ul p{
@@ -82,13 +105,15 @@ li a {
 }
 
 li a:hover:not(.active) {
-  background-color: #04AA6D;
+  background-color: #545451;
 }
 
 .active {
   background-color: #000;
 }
 
+
+/* UNVERSITY SEARCH STYLING */
 .university-search{
   display: flex;
   flex-direction: column;
@@ -204,6 +229,7 @@ li a:hover:not(.active) {
 
 #searchbar-submit-btn {
   background-color: #6CBDCF;
+  color: white;
   border-radius: 10px;
   border: none;
   height: 30px;
@@ -226,6 +252,8 @@ li a:hover:not(.active) {
 /*     font-size: 14pt;
     text-align: center; */
   }
+
+  /* LOGIN STYLING */
 
   .login-form{
     display: flex;

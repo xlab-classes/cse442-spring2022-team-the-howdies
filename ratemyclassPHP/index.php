@@ -18,9 +18,11 @@
         <div class="view">
         <div class="header">
             <div class="header-name">
-                <h1>RateMyClasses</h1>
+                <div class="header-decor-box">
+                    <h1>RateMyClasses</h1>
+                </div>
             </div>
-            <nav>
+            <nav class="navbar">
                 <div class="wrapper">
                     <ul>
                         <li><a class="active" href="index.php">Home</a></li>

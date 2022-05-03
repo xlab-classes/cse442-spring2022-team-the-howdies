@@ -113,6 +113,29 @@
     color: white;
 }
 
+/* ADD NEW CLASS STYLING */
+
+.vc-addClass-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .add-class-text{
     color: white;
+    padding-bottom: 10px;
+}
+
+.vc-addClass-form input {
+    border: none;
+    border-radius: 5px;
+    height: 25px;
+}
+
+.vc-addClass-btn {
+    height: 28px;
+    background-color: #6CBDCF;
+    color: white;
+    border: none;
+    border-radius: 5px;
 }
