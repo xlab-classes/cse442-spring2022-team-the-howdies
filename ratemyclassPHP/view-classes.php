@@ -19,6 +19,32 @@
     </head>
 
     <body>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("p.class-favorite").click(function(){
+                var className = $(this).attr('className');
+                var classId = $(this).attr('classId');
+                var uniId = $(this).attr('uniId');
+                var uniName = $(this).attr('uniName');
+                var userId = $(this).attr('userId');
+
+                $.ajax({
+                    url: "includes/ajax-favorite.php",
+                    type: "post",
+                    dataType: 'json',
+                    data: {class_name: className, class_id: classId, uni_id: uniId, uni_name: uniName, user_id: userId},
+                    success:function(result){
+                        var lText = $("#favorite"+classId).text(result.message);
+                    }
+                });
+            });
+        });
+    </script>
+
+
         <div class="view">
             <div class="header">
                 <div class="header-name">
@@ -118,7 +144,33 @@
                             $reviewAuthorData = mysqli_stmt_get_result($stmt);
                             $authorRow = mysqli_fetch_assoc($reviewAuthorData);
                             $reviewsAuthorName = $authorRow["usersUid"]*/
+
+                            $favSql = "SELECT * FROM favorites WHERE favoritesUserId = ? AND favoritesClassId = ?;";
+                            $favStmt = mysqli_stmt_init($conn);
+                            if(!mysqli_stmt_prepare($favStmt, $favSql)){
+                                //error 
+                                header("location: ../signup.php?error=stmtFailed");
+                                exit();
+                            }
+                            mysqli_stmt_bind_param($favStmt, "ss", $userId, $classId);
+                            mysqli_stmt_execute($favStmt);
+
+                            $favData = mysqli_stmt_get_result($favStmt);
+                            $favLength = mysqli_num_rows($favData);
+
+                            $favoriteMessage = "";
+
+
+                            if($favLength > 0){
+                                $favoriteMessage = "Unfavorite";
+                            }else{
+                                $favoriteMessage = "Favorite";
+                            }
+
+                            //$favoriteMessage = "Favorite";
+
                             $header = "view-reviews.php?className=". $className . "&classId=" . $classId;
+                            $favoriteId = "favorite" . $classId;
 
                         ?>
                         <form class="class-body-box" action=<?php echo $header; ?> method="post">
@@ -131,7 +183,9 @@
                                 <div class="class-info">
                                     <p id="total-ratings">Class Total Reviews: <?php echo $classNum; ?></p>
                                     <p id="rating-sum">Class Rating Sum: <?php echo $classSum; ?></p>
+                                    
                                 </div>
+                                <p id=<?php echo $favoriteId; ?> class="class-favorite" userId=<?php echo $userId; ?> classId=<?php echo $classId; ?> className=<?php echo str_replace(" ", "`", $className); ?> uniName=<?php echo str_replace(" ", "`", $uniName); ?> uniId=<?php echo $uniId; ?>><?php echo $favoriteMessage; ?></p>
                                 <!-- <button type="submit">View Reviews</button> -->
                             </div>
                         </div>
