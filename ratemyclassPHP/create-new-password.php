@@ -29,10 +29,10 @@
                                 echo "<li><a href='profile.php'>Profile</a></li>";
                             }
                         ?>
-                        <li><a href="university-select.php">Find or Create Reviews</a></li>
-                        <li><a href="my-reviews.php">My Reviews</a></li>
                         <?php 
                             if(isset($_SESSION["useruid"])){
+                                echo "<li> <a href='university-select.php'>My Favorites</a></li>";
+                                    echo "<li> <a href='my-reviews.php'>My Reviews</a></li>";
                                 echo "<li style='float:right'><a href='includes/logout.inc.php'>Logout</a></li>";
                             }else{
                                 echo "<li style='float:right'><a href='signup.php'>Sign up</a></li>";
