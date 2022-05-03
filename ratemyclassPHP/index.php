@@ -45,19 +45,77 @@
         </div>
 
         <?php
-            if(isset($_SESSION["useruid"])){
+           /* if(isset($_SESSION["useruid"])){
                 echo "<p>Hello " . $_SESSION["useruid"] . "!</p>";
             }
             if(isset($_SESSION["uniId"])) {
                 echo "<p>Your university is: " . $_SESSION["uniName"] . "</p>";
             }
+            if(isset($_GET["error"])){ 
+                
+            }*/
         ?>
         <section class="university-search">
             <div class="university-search-search">
                 <h3 id="searchbar-title">Enter your university name</h3>
                 <form action="includes/university-search.inc.php" method="post">
-                <input id="search" type="text" name="uniName" placeholder="University name">
-                <button id="searchbar-submit-btn" type="search" name="submit">Search</button>
+                    <Label class="add-university-text">University Name:</Label>
+                    <input id="search" type="text" name="uniName" placeholder="University name">
+                    <button id="searchbar-submit-btn" type="search" name="submit">Search</button>
                 </form>
+                
+                <?php 
+                    if(isset($_GET["error"])){    
+                ?>
+                    <br></br><br></br>
+                    <form action="includes/add-university.inc.php" method="post">
+                        <h3 class="add-university-text">Your university is not in the application. Add it in here!</h3>
+                        <Label class="add-university-text">University Name:</Label>
+                        <input class="" type="text" name="uniName" value="<?php echo $_GET["uniName"]; ?>">
+                        <button id="add-university-btn" type="search" name="submit">Add University</button>
+                    </form>
+                <?php
+                    }
+                ?>
+
+                <?php
+                    if(isset($_GET["possible"])){
+                        $possible = $_SESSION["possibleUnis"];
+                        $count = count($possible);
+                        ?>
+                            <br></br>
+                            <h3>OR</h3>
+                            <br></br>
+                            <h3 class="add-university-text">Are any of the following the university you are looking for?</h3>
+                        <?php 
+
+                        foreach ($possible as $possibleArr){
+                            $possibleName = $possibleArr['uniName'];
+                            $possibleId = $possibleArr['uniId'];
+
+                            $header = "view-classes.php?uniId=" . $possibleId . "&uniName=" . $possibleName;
+                        ?>
+                            
+                            <a class="class-name-link"href="<?php echo $header?>"><?php echo $possibleName?></a>
+                    
+                        <?php     
+                        }
+                    }
+                ?>
+
+                <?php
+                    if(isset($_GET["error"])){   
+                        if($_GET["error"] == "stmtFailed"){
+                            echo "<p class='fail'>There was an error.</p>";
+                        }
+                        if($_GET["error"] == "nameTaken"){
+                            echo "<p class='fail'>That university name is already used.</p>";
+                        }
+                    }
+
+                    if(isset($_GET["success"])){
+                        echo "<p class='success'>Your university has been added! Search for it above.</p>";
+                    }
+                ?>
             </div>
         </section>

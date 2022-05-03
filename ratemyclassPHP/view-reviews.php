@@ -315,7 +315,11 @@
                     
                         $postData = mysqli_stmt_get_result($poststmt);
 
+                        $className = str_replace(" ", "`", $className);
+
                         $createHeader = "create-review.php?className=" . $className . "&classId=" . $classId;
+
+                        $className = str_replace("`", " ", $className);
                     ?>
                     <form class="view-review-header" action=<?php echo $createHeader; ?> method="post">
                         <p>Showing Reviews for <?php echo $className; ?></p>

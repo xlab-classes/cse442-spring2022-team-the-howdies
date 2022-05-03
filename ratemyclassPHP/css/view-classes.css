@@ -65,7 +65,10 @@
 .class-display-template {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 98.5%;
+    background-color: #444444;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 /* Class name and Averate Rating */
@@ -83,7 +86,7 @@
 }
 
 .class-name-link:hover {
-    color: white;
+    color: #6CBDCF;
     font-size: 24px;
     text-decoration: underline;
 }
@@ -107,5 +110,9 @@
 
 #total-ratings,
 #rating-sum {
+    color: white;
+}
+
+.add-class-text{
     color: white;
 }
