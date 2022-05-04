@@ -47,10 +47,12 @@
 
         <div class="view">
             <div class="header">
-                <div class="header-name">
+            <div class="header-name">
+                <div class="header-decor-box">
                     <h1>RateMyClasses</h1>
                 </div>
-                <nav>
+            </div>
+                <nav class="navbar">
                     <div class="wrapper">
                         <ul>
                             <li><a href="index.php">Home</a></li>
@@ -200,12 +202,14 @@
                     </div>
                     
                     <br></br>
-                    <form class="view-review-header" action="includes/add-class.inc.php" method="post">
-                        <Label class="add-class-text">Don't see your class? Add it here!</Label><br></br>
-                        <input required name="newClassName" type="text" placeholder="Enter class name"/>
-                        <input type="hidden" name="uniId" value="<?php echo $uniId; ?>">
-                        <input type="hidden" name="uniName" value="<?php echo $uniName; ?>">
-                        <button class="leave-review-button" type="submit" name="submit" value="Add Class">Add Class</button>
+                    <form class="vc-addClass-form" action="includes/add-class.inc.php" method="post">
+                        <Label class="add-class-text">Don't see your class? Add it here!</Label>
+                        <div class="newclass-field-box">
+                            <input required name="newClassName" type="text" placeholder="Enter class name"/>
+                            <input type="hidden" name="uniId" value="<?php echo $uniId; ?>">
+                            <input type="hidden" name="uniName" value="<?php echo $uniName; ?>">
+                            <button class="vc-addClass-btn" type="submit" name="submit" value="Add Class">Add Class</button>
+                        </div>
                     </form>
 
                     <?php 

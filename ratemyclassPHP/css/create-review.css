@@ -1,0 +1,78 @@
+@import "style.css";
+
+.review-form{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    height: 85vh;
+  }
+  
+  .review-form-form{
+    border-radius: 30px;
+    padding: 20px;
+    width:40%;
+    background-color: #545451;
+  }
+  
+  .review-form h1,h2,h3{
+    text-align: center;
+    color: white;
+  }
+
+  .review-form-form input[type=text]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 10px;
+  }
+
+  .review-form-form textarea{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 10px;
+    resize: none;
+}
+
+.review-form-form button{
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.review-form-form .submit-btn{
+    background-color: #6CBDCF;
+    justify-self: center;
+}
+
+.review-form-form .cancel-btn{
+    background-color: #6CBDCF;
+    justify-self: center;
+}
+
+.review-form-form button:hover{
+    opacity: 0.6;
+}
+
+.review-form-form input[type=number]{
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  box-sizing: border-box;
+  font-size: 14pt;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+}

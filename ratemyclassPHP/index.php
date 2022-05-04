@@ -18,9 +18,11 @@
         <div class="view">
         <div class="header">
             <div class="header-name">
-                <h1>RateMyClasses</h1>
+                <div class="header-decor-box">
+                    <h1>RateMyClasses</h1>
+                </div>
             </div>
-            <nav>
+            <nav class="navbar">
                 <div class="wrapper">
                     <ul>
                         <li><a class="active" href="index.php">Home</a></li>
@@ -85,10 +87,8 @@
                         $possible = $_SESSION["possibleUnis"];
                         $count = count($possible);
                         ?>
-                            <br></br>
-                            <h3>OR</h3>
-                            <br></br>
-                            <h3 class="add-university-text">Are any of the following the university you are looking for?</h3>
+                            <h3 class="au-or-text">OR</h3>
+                            <h3 class="au-relatedUni-text">Are any of the following the university you are looking for?</h3>
                         <?php 
 
                         foreach ($possible as $possibleArr){

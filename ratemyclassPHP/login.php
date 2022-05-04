@@ -11,16 +11,18 @@
     <head>
         <meta charset="utf-8">
         <title>PHP Project</title>
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/login.css">
     </head>
 
     <body>
         <div class="view">
         <div class="header">
             <div class="header-name">
-                <h1>RateMyClasses</h1>
+                <div class="header-decor-box">
+                    <h1>RateMyClasses</h1>
+                </div>
             </div>
-            <nav>
+            <nav class="navbar">
                 <div class="wrapper">
                     <ul>
                         <li><a href="index.php">Home</a></li>
