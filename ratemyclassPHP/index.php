@@ -85,10 +85,8 @@
                         $possible = $_SESSION["possibleUnis"];
                         $count = count($possible);
                         ?>
-                            <br></br>
-                            <h3>OR</h3>
-                            <br></br>
-                            <h3 class="add-university-text">Are any of the following the university you are looking for?</h3>
+                            <h3 class="au-or-text">OR</h3>
+                            <h3 class="au-relatedUni-text">Are any of the following the university you are looking for?</h3>
                         <?php 
 
                         foreach ($possible as $possibleArr){

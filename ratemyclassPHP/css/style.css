@@ -32,6 +32,7 @@
   top: 0;
   left: 0;*/
   width: 100%;
+  height: 15vh;
   display:flex;
   flex-direction:column;
   align-items: center;
@@ -117,9 +118,9 @@ li a:hover:not(.active) {
 .university-search{
   display: flex;
   flex-direction: column;
-  height: 600px;
+  height: 85vh;
   text-align: center;
-  align-content: center;
+  align-items: center;
   justify-content: center;
   /*
   ALREADY COMMENTED OUT
@@ -237,9 +238,27 @@ li a:hover:not(.active) {
 
 #add-university-btn{
   background-color: #6CBDCF;
+  color: white;
   border-radius: 10px;
   border: none;
   height: 30px;
+}
+
+/* RELATED UNIVERSITIES WHEN YOU ADD */
+.au-or-text {
+  color: white;
+}
+
+.au-relatedUni-text {
+  color: white;
+  padding: 0px;
+  margin: 0px;
+  padding-bottom: 10px;
+}
+
+.class-name-link {
+  color: #6CBDCF;
+  text-decoration: underline;
 }
 
 .review-form-form input[type=text]{
@@ -248,9 +267,6 @@ li a:hover:not(.active) {
     margin: 8px 0;
     display: inline-block;
     box-sizing: border-box;
-/*  START PROFILE CSS MERGE CONFLICT  */
-/*     font-size: 14pt;
-    text-align: center; */
   }
 
   /* LOGIN STYLING */
