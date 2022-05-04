@@ -15,7 +15,7 @@
     <head>
         <meta charset="utf-8">
         <title>PHP Project</title>
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/create-review.css">
     </head>
 
     <body>

@@ -8,6 +8,7 @@
   left: 0;
   position: absolute;
   overflow-y:auto;
+  color: #333333;
 }
 
 .add-university-text{
@@ -191,26 +192,6 @@ li a:hover:not(.active) {
   opacity: 0.6;
 }
 
-.review-form{
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-content: center;
-  justify-content: center;
-  margin: 15px;
-}
-
-.review-form-form{
-  border-radius: 30px;
-  padding: 20px;
-  width:50%;
-  margin: auto;
-  background-color: gray;
-}
-
-.review-form h1,h2,h3{
-  text-align: center;
-}
 
 #searchbar-title {
   color: white;
@@ -260,14 +241,6 @@ li a:hover:not(.active) {
   color: #6CBDCF;
   text-decoration: underline;
 }
-
-.review-form-form input[type=text]{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    box-sizing: border-box;
-  }
 
   /* LOGIN STYLING */
 
@@ -327,47 +300,6 @@ body{
 /* PROFILE CSS MERGE CONFLICT END */
 
 /* DEV CSS MERGE CONFLICT START */
-
-.review-form-form textarea{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    box-sizing: border-box;
-}
-
-.review-form-form button{
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-}
-
-.review-form-form .submit-btn{
-    background-color: #04AA6D;
-    justify-self: center;
-}
-
-.review-form-form .cancel-btn{
-    background-color: red;
-    justify-self: center;
-}
-
-.review-form-form button:hover{
-    opacity: 0.6;
-}
-
-.review-form-form input[type=number]{
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  box-sizing: border-box;
-  font-size: 14pt;
-  text-align: center;
-}
 
 .login-form{
   display: flex;
