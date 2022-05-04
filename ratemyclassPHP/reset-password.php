@@ -11,7 +11,7 @@
     <head>
         <meta charset="utf-8">
         <title>PHP Project</title>
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/reset-password.css">
     </head>
 
     <body>
@@ -46,11 +46,10 @@
             </nav>
         </div>
 
-        <section class="login-form">
-            <div class="login-form-form">
-                <h2>Login</h2>
+        <section class="reset-password-form">
+            <div class="reset-password-form-form">
                 <h1>Reset your password</h1>
-                <p>An email will be sent with instructions on how to reset your password.</p>
+                <p class="reset-message">An email will be sent with instructions on how to reset your password.</p>
                 <form action="includes/reset-requests.inc.php" method="post">
                     <input required type="email" name="email" placeholder="Email. . .">
                     <button type="submit" name="reset-request-submit">Send</button>
