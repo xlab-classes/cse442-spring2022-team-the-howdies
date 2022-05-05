@@ -97,7 +97,7 @@ function selectUniversity($conn, $uniName) {
     }
 
     session_start();
-    $_SESSION["uniId"] = $uniIdExists["universityID"];
+    $_SESSION["uniId"] = $uniIdExists["universityId"];
     $_SESSION["uniName"] = $uniName;
 
     $sql = "SELECT * FROM universities WHERE universityName = ?;";
@@ -121,7 +121,7 @@ function selectUniversity($conn, $uniName) {
 }
 
 if(isset($_POST["submit"])){
-     $uniName = $_POST["uniName"];
+    $uniName = $_POST["uniName"];
 
     require_once 'dbh.inc.php';
     //require_once 'functions.inc.php';

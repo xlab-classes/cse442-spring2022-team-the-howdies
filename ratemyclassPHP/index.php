@@ -49,14 +49,17 @@
         </div>
 
         <?php
-           /* if(isset($_SESSION["useruid"])){
+           /*if(isset($_SESSION["useruid"])){
                 echo "<p>Hello " . $_SESSION["useruid"] . "!</p>";
             }
             if(isset($_SESSION["uniId"])) {
                 echo "<p>Your university is: " . $_SESSION["uniName"] . "</p>";
             }
-            if(isset($_GET["error"])){ 
-                
+            if(isset($_SESSION["uniId"])) {
+                echo "<p>Your university is: " . $_SESSION["uniName"] . "</p>";
+            }
+            if(isset($_SESSION["userid"])) {
+                echo "<p>Your userId is: " . $_SESSION["userid"] . "</p>";
             }*/
         ?>
         <section class="university-search">
