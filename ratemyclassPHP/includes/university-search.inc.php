@@ -34,7 +34,7 @@ function selectUniversity($conn, $uniName) {
     }
 
     session_start();
-    $_SESSION["uniId"] = $uniIdExists["universityID"];
+    $_SESSION["uniId"] = $uniIdExists["universityId"];
     $_SESSION["uniName"] = $uniName;
 
     $sql = "SELECT * FROM universities WHERE universityName = ?;";
@@ -50,7 +50,7 @@ function selectUniversity($conn, $uniName) {
     $resultData = mysqli_stmt_get_result($stmt);
 
     $row = mysqli_fetch_assoc($resultData);
-    $uniId = $row["universityID"];
+    $uniId = $row["universityId"];
 
     //header("location: ../index.php?uniName=" . $uniName);
     header("location: ../view-classes.php?uniName=" . $uniName . "&uniId=". $uniId);
@@ -58,7 +58,7 @@ function selectUniversity($conn, $uniName) {
 }
 
 if(isset($_POST["submit"])){
-     $uniName = $_POST["uniName"];
+    $uniName = $_POST["uniName"];
 
     require_once 'dbh.inc.php';
     //require_once 'functions.inc.php';
