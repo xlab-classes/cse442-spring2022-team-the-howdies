@@ -105,3 +105,18 @@
 .user-review-dislikes {
     display: flex;
 }
+
+/* MY REVIEWS DELETE BUTTON STYLING */
+.delete-review-header .delete-review-button {
+    background-color: #6CBDCF;
+    border-radius: 12px;
+    border: none;
+    font-size: large;
+    color: white;
+
+    width: 80px;
+    height: 45px;
+    margin-top: 17px;
+    margin-left: 5%;
+    cursor: pointer;
+}

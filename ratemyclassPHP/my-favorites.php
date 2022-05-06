@@ -49,9 +49,11 @@
         <div class="view">
             <div class="header">
                 <div class="header-name">
-                    <h1>RateMyClasses</h1>
+                    <div class="header-decor-box">
+                        <h1>RateMyClasses</h1>
+                    </div>
                 </div>
-                <nav>
+                <nav class="navbar">
                     <div class="wrapper">
                         <ul>
                             <li><a href="index.php">Home</a></li>
@@ -111,7 +113,7 @@
                         //$postData = mysqli_stmt_get_result($poststmt);
                     ?>
                     <div class="vc-header">
-                        <p id="vc-header-uniName">Your favorited courses: </p>
+                        <p id="mf-header-name">Your favorited courses: </p>
                     </div>
             
                     <div class="class-display-box">

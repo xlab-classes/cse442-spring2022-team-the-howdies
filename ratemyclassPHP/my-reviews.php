@@ -253,9 +253,11 @@
         <div class="view">
             <div class="header">
                 <div class="header-name">
-                    <h1>RateMyClasses</h1>
+                    <div class="header-decor-box">
+                        <h1>RateMyClasses</h1>
+                    </div>
                 </div>
-                <nav>
+                <nav class="navbar">
                     <div class="wrapper">
                         <ul>
                             <li><a href="index.php">Home</a></li>
@@ -426,11 +428,11 @@
                                     <p id=<?php echo $dislikeId; ?>><?php echo $dislikes; ?></p>
                                 </div>
                             </div>
-                            <form class="view-review-header" action="includes/delete.inc.php" method="post">
+                            <form class="delete-review-header" action="includes/delete.inc.php" method="post">
                                 <input hidden type="text" name="reviewsId" value="<?php echo $reviewsId; ?>"/>
                                 <input hidden type="text" name="classId" value="<?php echo $reviewsClassId; ?>"/>
                                 <input hidden type="text" name="rating" value="<?php echo $reviewsRating; ?>"/>
-                                <input name="submit" class="leave-review-button" type="submit" value="Delete"/>
+                                <input name="submit" class="delete-review-button" type="submit" value="Delete"/>
                             </form>
                         </div>
                         <br>
