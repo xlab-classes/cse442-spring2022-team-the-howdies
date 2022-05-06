@@ -117,7 +117,7 @@
                     ?>
                     <div class="vc-header">
                         <p id="vc-header-intro">You are now viewing courses from: </p>
-                        <p id="vc-header-uniname"><?php echo $uniName?></p>
+                        <p id="vc-header-uniName"><?php echo $uniName?></p>
                     </div>
             
                     <div class="class-display-box">

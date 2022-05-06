@@ -33,7 +33,7 @@
     margin: 20px;
 }
 
-#vc-header-uniname {
+#vc-header-uniName {
     font-size: 36px;
     color: white;
     margin: 0;
@@ -139,4 +139,12 @@
     color: white;
     border: none;
     border-radius: 5px;
+}
+
+/* FAVORITES PAGE */
+#mf-header-name {
+    font-size: 26px;
+    color: white;
+    margin: 0;
+    padding-bottom: 10px;
 }
