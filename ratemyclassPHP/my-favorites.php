@@ -37,7 +37,8 @@
                     dataType: 'json',
                     data: {class_name: className, class_id: classId, uni_id: uniId, uni_name: uniName, user_id: userId},
                     success:function(result){
-                        var lText = $("#favorite"+classId).text(result.message);
+                        location.reload();
+                        //var lText = $("#favorite"+classId).text(result.message);
                     }
                 });
             });
@@ -47,12 +48,10 @@
 
         <div class="view">
             <div class="header">
-            <div class="header-name">
-                <div class="header-decor-box">
+                <div class="header-name">
                     <h1>RateMyClasses</h1>
                 </div>
-            </div>
-                <nav class="navbar">
+                <nav>
                     <div class="wrapper">
                         <ul>
                             <li><a href="index.php">Home</a></li>
@@ -63,9 +62,7 @@
                             ?>
                             <?php 
                                 if(isset($_SESSION["useruid"])){
-
-                                    echo "<li> <a href='my-favorites.php'>My Favorites</a></li>";
-
+                                    echo "<li> <a class='active' href='my-favorites.php'>My Favorites</a></li>";
                                     echo "<li> <a href='my-reviews.php'>My Reviews</a></li>";
                                     echo "<li style='float:right'><a href='includes/logout.inc.php'>Logout</a></li>";
                                 }else{
@@ -83,25 +80,23 @@
             <section class="vc-page">
                 <div class="vc-display-box">
                     <?php
-                        $uniId = $_GET["uniId"];
-                        $uniName = $_GET["uniName"];
                         $userId = $_SESSION["userid"];
                     ?>
                     <?php
                     
                         require_once 'includes/dbh.inc.php';
 
-                        $sql = "SELECT * FROM classes WHERE classesUniId = ?;";
+                        $sql = "SELECT * FROM favorites WHERE favoritesUserId = ?;";
                         $stmt = mysqli_stmt_init($conn);
                         if(!mysqli_stmt_prepare($stmt, $sql)){
                             header("location: ../signup.php?error=stmtFailed");
                             exit();
                         }
                     
-                        mysqli_stmt_bind_param($stmt, "s", $uniId);
+                        mysqli_stmt_bind_param($stmt, "s", $userId);
                         mysqli_stmt_execute($stmt);
                     
-                        $postData = mysqli_stmt_get_result($stmt);
+                        $favoriteData = mysqli_stmt_get_result($stmt);
 
                         /*$postSQL = "SELECT * FROM reviews WHERE reviewsClassId= ?;";
                         $poststmt = mysqli_stmt_init($conn);
@@ -116,8 +111,7 @@
                         //$postData = mysqli_stmt_get_result($poststmt);
                     ?>
                     <div class="vc-header">
-                        <p id="vc-header-intro">You are now viewing courses from: </p>
-                        <p id="vc-header-uniname"><?php echo $uniName?></p>
+                        <p id="vc-header-uniName">Your favorited courses: </p>
                     </div>
             
                     <div class="class-display-box">
@@ -125,14 +119,31 @@
                         </div>
                         <div class="class-display-list">
                         <?php
-                        $resultLength = mysqli_num_rows($postData);
+                        $resultLength = mysqli_num_rows($favoriteData);
                         for ($x = 0; $x < $resultLength; $x++){
-                            $row = mysqli_fetch_assoc($postData);
-                            $classId = $row["classesId"];
-                            $className = $row["classesName"];
-                            $classAvg = $row["classesAvg"];
-                            $classNum = $row["classesTotalReviews"];
-                            $classSum = $row["classesRatingSum"];
+                            $row = mysqli_fetch_assoc($favoriteData);
+                            $classId = $row["favoritesClassId"];
+                            $className = $row["favoritesClassName"];
+                            $uniId = $row["favoritesUniId"];
+                            $uniName = $row["favoritesUniName"];
+
+
+                            $sql = "SELECT * FROM classes WHERE classesUniId = ?;";
+                            $stmt = mysqli_stmt_init($conn);
+                            if(!mysqli_stmt_prepare($stmt, $sql)){
+                                header("location: ../signup.php?error=stmtFailed");
+                                exit();
+                            }
+                        
+                            mysqli_stmt_bind_param($stmt, "s", $uniId);
+                            mysqli_stmt_execute($stmt);
+                        
+                            $postData = mysqli_stmt_get_result($stmt);
+                            $row2 = mysqli_fetch_assoc($postData);
+
+                            $classAvg = $row2["classesAvg"];
+                            $classNum = $row2["classesTotalReviews"];
+                            $classSum = $row2["classesRatingSum"];
 
                             
                             /*$sql = "SELECT * FROM users WHERE usersId = ?;";
@@ -174,12 +185,14 @@
                             //$favoriteMessage = "Favorite";
 
                             $header = "view-reviews.php?className=". $className . "&classId=" . $classId;
+                            $headerUni = "view-classes.php?uniName=". $uniName . "&uniId=" . $uniId;
                             $favoriteId = "favorite" . $classId;
 
                         ?>
                         <form class="class-body-box" action=<?php echo $header; ?> method="post">
                         <div class="class-display-template">
                             <div class="class-header">
+                                    <a class="class-name-link"href="<?php echo $headerUni?>"><?php echo $uniName?></a>
                                     <a class="class-name-link"href="<?php echo $header?>"><?php echo $className?></a>
                                     <p id="avg-rating">Avg. Rating: <?php echo $classAvg; ?>/10</p>
                             </div>
@@ -200,17 +213,6 @@
                         ?>
                     </div>
                     </div>
-                    
-                    <br></br>
-                    <form class="vc-addClass-form" action="includes/add-class.inc.php" method="post">
-                        <Label class="add-class-text">Don't see your class? Add it here!</Label>
-                        <div class="newclass-field-box">
-                            <input required name="newClassName" type="text" placeholder="Enter class name"/>
-                            <input type="hidden" name="uniId" value="<?php echo $uniId; ?>">
-                            <input type="hidden" name="uniName" value="<?php echo $uniName; ?>">
-                            <button class="vc-addClass-btn" type="submit" name="submit" value="Add Class">Add Class</button>
-                        </div>
-                    </form>
 
                     <?php 
                     if(isset($_GET["error"])){

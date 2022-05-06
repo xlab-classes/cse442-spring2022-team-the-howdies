@@ -31,10 +31,12 @@
                                 echo "<li><a href='profile.php'>Profile</a></li>";
                             }
                         ?>
-                        <li><a href="university-select.php">Find or Create Reviews</a></li>
-                        <li><a href="my-reviews.php">My Reviews</a></li>
                         <?php 
                             if(isset($_SESSION["useruid"])){
+
+                                echo "<li> <a href='my-favorites.php'>My Favorites</a></li>";
+
+                                echo "<li> <a href='my-reviews.php'>My Reviews</a></li>";
                                 echo "<li style='float:right'><a href='includes/logout.inc.php'>Logout</a></li>";
                             }else{
                                 echo "<li style='float:right'><a href='signup.php'>Sign up</a></li>";
@@ -47,14 +49,17 @@
         </div>
 
         <?php
-           /* if(isset($_SESSION["useruid"])){
+           /*if(isset($_SESSION["useruid"])){
                 echo "<p>Hello " . $_SESSION["useruid"] . "!</p>";
             }
             if(isset($_SESSION["uniId"])) {
                 echo "<p>Your university is: " . $_SESSION["uniName"] . "</p>";
             }
-            if(isset($_GET["error"])){ 
-                
+            if(isset($_SESSION["uniId"])) {
+                echo "<p>Your university is: " . $_SESSION["uniName"] . "</p>";
+            }
+            if(isset($_SESSION["userid"])) {
+                echo "<p>Your userId is: " . $_SESSION["userid"] . "</p>";
             }*/
         ?>
         <section class="university-search">
