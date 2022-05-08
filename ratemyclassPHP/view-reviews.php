@@ -373,7 +373,7 @@
                                     <p><?php echo $reviewsAuthorName; ?></p>
                                 </div>
                                 <div class="user-review-year">
-                                    <label>Year:</label>
+                                    <label>Year: </label>
                                     <p><?php echo $year; ?></p>
                                 </div>
                                 <div class="user-review-rating">
