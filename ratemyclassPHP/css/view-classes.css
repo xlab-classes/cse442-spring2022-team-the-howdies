@@ -114,6 +114,11 @@
     color: white;
 }
 
+.class-favorite {
+    color: #6CBDCF;
+    cursor: pointer;
+}
+
 /* ADD NEW CLASS STYLING */
 
 .vc-addClass-form {
