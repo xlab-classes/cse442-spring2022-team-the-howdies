@@ -234,9 +234,11 @@
         <div class="view">
             <div class="header">
                 <div class="header-name">
-                    <h1>RateMyClasses</h1>
+                    <div class="header-decor-box">
+                        <h1>RateMyClasses</h1>
+                    </div>
                 </div>
-                <nav>
+                <nav class="navbar">
                     <div class="wrapper">
                         <ul>
                             <li><a href="index.php">Home</a></li>
@@ -258,146 +260,53 @@
                         </ul>
                     </div>
                 </nav>
+            </div>
 
-                
-                <div class="post-container">
-                    <?php
-                        $classId = $_GET["classId"];
-                        $className = $_GET["className"];
-                        $reviewsId = $_GET["reviewsId"];
-                        $userId = $_SESSION["userid"];
-                    ?>
-                    <?php
-                        require_once 'includes/dbh.inc.php';
-
-                        $sql = "SELECT * FROM users WHERE usersId = ?;";
-                        $stmt = mysqli_stmt_init($conn);
-                        if(!mysqli_stmt_prepare($stmt, $sql)){
-                            header("location: ../signup.php?error=stmtFailed");
-                            exit();
-                        }
-                    
-                        mysqli_stmt_bind_param($stmt, "s", $userId);
-                        mysqli_stmt_execute($stmt);
-                    
-                        $currentUserData = mysqli_stmt_get_result($stmt);
-
-                        $postSQL = "SELECT * FROM reviews WHERE reviewsId= ?;";
-                        $poststmt = mysqli_stmt_init($conn);
-                        if(!mysqli_stmt_prepare($poststmt, $postSQL)){
-                            header("location: ../signup.php?error=stmtFailed");
-                            exit();
-                        }
-                    
-                        mysqli_stmt_bind_param($poststmt, "s", $reviewsId);
-                        mysqli_stmt_execute($poststmt);
-                    
-                        $postData = mysqli_stmt_get_result($poststmt);
-
-                        $createHeader = "create-review.php?className=" . $className . "&classId=" . $classId;
-                    ?>
-                    <?php
-                        $row = mysqli_fetch_assoc($postData);
-                        $reviewsId = $row["reviewsId"];
-                        $reviewsOwnerId = $row["reviewsOwnerId"];
-                        $reviewsRating = $row["reviewsRating"];
-                        $reviewsProfessor = $row["reviewsProfessor"];
-                        $reviewsReview = $row["reviewsReview"];
-
-                        
-                        $sql = "SELECT * FROM users WHERE usersId = ?;";
-                        $stmt = mysqli_stmt_init($conn);
-                        if(!mysqli_stmt_prepare($stmt, $sql)){
-                            header("location: ../signup.php?error=stmtFailed");
-                            exit();
-                        }
-                    
-                        mysqli_stmt_bind_param($stmt, "s", $reviewsOwnerId);
-                        mysqli_stmt_execute($stmt);
-                    
-                        $reviewAuthorData = mysqli_stmt_get_result($stmt);
-                        $authorRow = mysqli_fetch_assoc($reviewAuthorData);
-                        $reviewsAuthorName = $authorRow["usersUid"];
-                        $year = $authorRow["usersYear"];
-                        if($year == ""){
-                            $year = "N/A";
-                        }
-
-                        $likeId = "p" . $reviewsId;
-                        $dislikeId = "pDL" . $reviewsId;
-
-                        $likes = getLikes($reviewsId, $conn);
-                        $dislikes = getDislikes($reviewsId, $conn);
-
-                    ?>
-                    <div class="post">
-                        <div class="user-review-header">
-                            <div class="user-review-author">
-                                <label class="post-label">User: </label>
-                                <p><?php echo $reviewsAuthorName?></p>
-                            </div>
-                            <div class="user-review-year">
-                                <label class="post-label">Year: </label>
-                                <p><?php echo $year?></p>
-                            </div>
-                            <div class="user-review-rating">
-                                <label class="post-label">Rating: </label>
-                                <p><?php echo $reviewsRating?></p>
-                            </div>
-                        </div>
-
-                        <div class="user-review-professor-container">
-                            <div class="user-review-professor">
-                                <label class="post-label">Professor: </label>
-                                <p><?php echo $reviewsProfessor?></p>
-                            </div>
-                        </div>
-                        <div class="user-review-content-container">
-                            <div class="user-review-content">
-                                <label class="post-label">User Review: </label>
-                                <p><?php echo $reviewsReview?></p>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <hr id="break">
-                    <div class="comment-container">
-                        <form method="post" action="includes/comments.inc.php">
-                            <input type="text" name="commentComment" placeholder="Enter your comment here">
-                            <input type="hidden" name="reviewsId" value=<?php echo $_GET["reviewsId"] ?>>
-                            <input type="hidden" name="className" value=<?php echo $_GET["className"] ?>>
-                            <input type="hidden" name="classId" value=<?php echo $_GET["classId"] ?>>
-                            <input type="hidden" name="userId" value=<?php echo $_SESSION["userid"] ?>>
-                            <button name="submit" type="submit">Submit</button>
-                        </form>
-                    </div>
-
-                    <?php
-                    
-                        require_once 'includes/dbh.inc.php';
-
-                        $sql = "SELECT * FROM comments WHERE commentReviewId = ?;";
-                        $stmt = mysqli_stmt_init($conn);
-                        if(!mysqli_stmt_prepare($stmt, $sql)){
-                            header("location: ../signup.php?error=stmtFailed");
-                            exit();
-                        }
-                    
-                        mysqli_stmt_bind_param($stmt, "s", $_GET["reviewsId"]);
-                        mysqli_stmt_execute($stmt);
-                    
-                        $commentsData = mysqli_stmt_get_result($stmt);
-
-                        //$createHeader = "create-review.php?className=" . $className . "&classId=" . $classId;
-                    ?>
-
-                    <div class="user-review-list">
+            <section class="view-post-page">
+                <div class="view-post">
+                    <div class="post-container">
                         <?php
-                        $resultLength = mysqli_num_rows($commentsData);
-                        for ($x = 0; $x < $resultLength; $x++){
-                            $row = mysqli_fetch_assoc($commentsData);
-                            $comment = $row["commentComment"];
-                            $commentOwnerId = $row["commentUserId"];
+                            $classId = $_GET["classId"];
+                            $className = $_GET["className"];
+                            $reviewsId = $_GET["reviewsId"];
+                            $userId = $_SESSION["userid"];
+                        ?>
+                        <?php
+                            require_once 'includes/dbh.inc.php';
+
+                            $sql = "SELECT * FROM users WHERE usersId = ?;";
+                            $stmt = mysqli_stmt_init($conn);
+                            if(!mysqli_stmt_prepare($stmt, $sql)){
+                                header("location: ../signup.php?error=stmtFailed");
+                                exit();
+                            }
+                        
+                            mysqli_stmt_bind_param($stmt, "s", $userId);
+                            mysqli_stmt_execute($stmt);
+                        
+                            $currentUserData = mysqli_stmt_get_result($stmt);
+
+                            $postSQL = "SELECT * FROM reviews WHERE reviewsId= ?;";
+                            $poststmt = mysqli_stmt_init($conn);
+                            if(!mysqli_stmt_prepare($poststmt, $postSQL)){
+                                header("location: ../signup.php?error=stmtFailed");
+                                exit();
+                            }
+                        
+                            mysqli_stmt_bind_param($poststmt, "s", $reviewsId);
+                            mysqli_stmt_execute($poststmt);
+                        
+                            $postData = mysqli_stmt_get_result($poststmt);
+
+                            $createHeader = "create-review.php?className=" . $className . "&classId=" . $classId;
+                        ?>
+                        <?php
+                            $row = mysqli_fetch_assoc($postData);
+                            $reviewsId = $row["reviewsId"];
+                            $reviewsOwnerId = $row["reviewsOwnerId"];
+                            $reviewsRating = $row["reviewsRating"];
+                            $reviewsProfessor = $row["reviewsProfessor"];
+                            $reviewsReview = $row["reviewsReview"];
 
                             
                             $sql = "SELECT * FROM users WHERE usersId = ?;";
@@ -407,37 +316,122 @@
                                 exit();
                             }
                         
-                            mysqli_stmt_bind_param($stmt, "s", $commentOwnerId);
+                            mysqli_stmt_bind_param($stmt, "s", $reviewsOwnerId);
                             mysqli_stmt_execute($stmt);
                         
                             $reviewAuthorData = mysqli_stmt_get_result($stmt);
                             $authorRow = mysqli_fetch_assoc($reviewAuthorData);
                             $reviewsAuthorName = $authorRow["usersUid"];
+                            $year = $authorRow["usersYear"];
+                            if($year == ""){
+                                $year = "N/A";
+                            }
+
+                            $likeId = "p" . $reviewsId;
+                            $dislikeId = "pDL" . $reviewsId;
+
+                            $likes = getLikes($reviewsId, $conn);
+                            $dislikes = getDislikes($reviewsId, $conn);
 
                         ?>
-                        <div class="user-review">
-                            <label><?php echo $reviewsAuthorName; ?></label>
-                            <p><?php echo $comment; ?></p>
+                        <div class="post">
+                            <div class="user-review-header">
+                                <div class="user-review-author">
+                                    <label class="post-label">User: </label>
+                                    <p><?php echo $reviewsAuthorName?></p>
+                                </div>
+                                <div class="user-review-year">
+                                    <label class="post-label">Year: </label>
+                                    <p><?php echo $year?></p>
+                                </div>
+                                <div class="user-review-rating">
+                                    <label class="post-label">Rating: </label>
+                                    <p><?php echo $reviewsRating?></p>
+                                </div>
+                            </div>
+
+                            <div class="user-review-professor-container">
+                                <div class="user-review-professor">
+                                    <label class="post-label">Professor: </label>
+                                    <p><?php echo $reviewsProfessor?></p>
+                                </div>
+                            </div>
+                            <div class="user-review-content-container">
+                                <div class="user-review-content">
+                                    <label class="post-label">User Review: </label>
+                                    <p><?php echo $reviewsReview?></p>
+                                </div>
+                            </div>
+                            
                         </div>
-                        <br>
-                        <?php
-                        }
-                        ?>
-                    </div>
-                </div>
-                <?php
-                // }
-                ?>
-            </div>
+                        <div class="comment-container">
+                            <form method="post" action="includes/comments.inc.php">
+                                <input type="text" name="commentComment" class="create-comment-field" placeholder="Enter your comment here">
+                                <input type="hidden" name="reviewsId" value=<?php echo $_GET["reviewsId"] ?>>
+                                <input type="hidden" name="className" value=<?php echo $_GET["className"] ?>>
+                                <input type="hidden" name="classId" value=<?php echo $_GET["classId"] ?>>
+                                <input type="hidden" name="userId" value=<?php echo $_SESSION["userid"] ?>>
+                                <button name="submit" type="submit" class="submit-comment-btn">Submit</button>
+                            </form>
+                        </div>
 
-            
-            <section class="view-post-page">
-                <div class="view-post">
+                        <?php
+                        
+                            require_once 'includes/dbh.inc.php';
+
+                            $sql = "SELECT * FROM comments WHERE commentReviewId = ?;";
+                            $stmt = mysqli_stmt_init($conn);
+                            if(!mysqli_stmt_prepare($stmt, $sql)){
+                                header("location: ../signup.php?error=stmtFailed");
+                                exit();
+                            }
+                        
+                            mysqli_stmt_bind_param($stmt, "s", $_GET["reviewsId"]);
+                            mysqli_stmt_execute($stmt);
+                        
+                            $commentsData = mysqli_stmt_get_result($stmt);
+
+                            //$createHeader = "create-review.php?className=" . $className . "&classId=" . $classId;
+                        ?>
+
+                        <div class="user-review-list">
+                            <?php
+                            $resultLength = mysqli_num_rows($commentsData);
+                            for ($x = 0; $x < $resultLength; $x++){
+                                $row = mysqli_fetch_assoc($commentsData);
+                                $comment = $row["commentComment"];
+                                $commentOwnerId = $row["commentUserId"];
+
+                                
+                                $sql = "SELECT * FROM users WHERE usersId = ?;";
+                                $stmt = mysqli_stmt_init($conn);
+                                if(!mysqli_stmt_prepare($stmt, $sql)){
+                                    header("location: ../signup.php?error=stmtFailed");
+                                    exit();
+                                }
+                            
+                                mysqli_stmt_bind_param($stmt, "s", $commentOwnerId);
+                                mysqli_stmt_execute($stmt);
+                            
+                                $reviewAuthorData = mysqli_stmt_get_result($stmt);
+                                $authorRow = mysqli_fetch_assoc($reviewAuthorData);
+                                $reviewsAuthorName = $authorRow["usersUid"];
+
+                            ?>
+                            <div class="user-review">
+                                <label><?php echo $reviewsAuthorName; ?></label>
+                                <p><?php echo $comment; ?></p>
+                            </div>
+                            <br>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                    </div>
                     <?php
-                        //$classId = $_GET["classId"];
-                        //$className = $_GET["className"];
-                        //$userId = $_SESSION["userid"];
+                    // }
                     ?>
+                </div>
                     
                     
                 </div>
