@@ -406,7 +406,7 @@
                                         <input type="hidden" name="reviewsId" value=<?php echo $reviewsId ?>>
                                         <input type="hidden" name="classId" value=<?php echo $classId ?>>
                                         <input type="hidden" name="className" value=<?php echo $className ?>>
-                                        <button type="submit">Comment</button>
+                                        <button type="submit" class="comment-btn">Comment</button>
                                     </form>
                                 </div>
                             </div>

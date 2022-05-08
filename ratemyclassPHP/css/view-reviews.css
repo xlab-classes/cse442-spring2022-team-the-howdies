@@ -106,6 +106,15 @@
     display: flex;
 }
 
+.comment-btn {
+    height: 30px;
+    background-color: #6CBDCF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 /* MY REVIEWS DELETE BUTTON STYLING */
 .delete-review-header .delete-review-button {
     background-color: #6CBDCF;
