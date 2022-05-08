@@ -307,7 +307,7 @@
                     
                         $currentUserData = mysqli_stmt_get_result($stmt);
 
-                        $postSQL = "SELECT * FROM reviews WHERE reviewsClassId= ?;";
+                        $postSQL = "SELECT * FROM reviews WHERE reviewsClassId= ? ORDER BY reviewsId DESC;";
                         $poststmt = mysqli_stmt_init($conn);
                         if(!mysqli_stmt_prepare($poststmt, $postSQL)){
                             header("location: ../signup.php?error=stmtFailed");
