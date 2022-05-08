@@ -6,6 +6,10 @@
 
 /*  */
 
+.view-post-page {
+    height: 82vh;
+}
+
 .post-label {
     display: flex;
     font-weight: bold;
@@ -17,7 +21,6 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-top: 5%;
     justify-content: center;
     align-items: center;
     font-family: sans-serif;
@@ -59,16 +62,33 @@
     font-size: 30px;
 }
 
+
+/* COMMENT CREATION STYLING */
 .comment-container {
     display: flex;
     margin-top: 10px;
     background-color: #444444;
     width: 90%;
+    padding: 20px;
+    border-radius: 10px;
 }
 
-#break {
-    width: 95%;
-    height: 5px;
-    background-color: #444444;
-    border-color: #444444;
+.create-comment-field {
+    border: none;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.submit-comment-btn {
+    height: 30px;
+    background-color: #6CBDCF;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+
+/* COMMENT DISPLAY STYLING */
+
+.user-review-list {
+    padding-top: 10px;
 }
