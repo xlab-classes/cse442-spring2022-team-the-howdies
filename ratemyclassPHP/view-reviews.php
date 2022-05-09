@@ -23,7 +23,7 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title>PHP Project</title>
+        <title>Rate My Classes</title>
         <link rel="stylesheet" href="css/view-reviews.css">
     </head>
 
@@ -253,9 +253,11 @@
         <div class="view">
             <div class="header">
                 <div class="header-name">
-                    <h1>RateMyClasses</h1>
+                    <div class="header-decor-box">
+                        <h1>RateMyClasses</h1>
+                    </div>
                 </div>
-                <nav>
+                <nav class="navbar">
                     <div class="wrapper">
                         <ul>
                             <li><a href="index.php">Home</a></li>
@@ -264,10 +266,12 @@
                                     echo "<li><a href='profile.php'>Profile</a></li>";
                                 }
                             ?>
-                            <li><a href="university-select.php">Find Reviews</a></li>
-                            <li><a href="my-reviews.php">My Reviews</a></li>
                             <?php 
                                 if(isset($_SESSION["useruid"])){
+
+                                    echo "<li> <a href='my-favorites.php'>My Favorites</a></li>";
+
+                                    echo "<li> <a href='my-reviews.php'>My Reviews</a></li>";
                                     echo "<li style='float:right'><a href='includes/logout.inc.php'>Logout</a></li>";
                                 }else{
                                     echo "<li style='float:right'><a href='signup.php'>Sign up</a></li>";
@@ -303,7 +307,7 @@
                     
                         $currentUserData = mysqli_stmt_get_result($stmt);
 
-                        $postSQL = "SELECT * FROM reviews WHERE reviewsClassId= ?;";
+                        $postSQL = "SELECT * FROM reviews WHERE reviewsClassId= ? ORDER BY reviewsId DESC;";
                         $poststmt = mysqli_stmt_init($conn);
                         if(!mysqli_stmt_prepare($poststmt, $postSQL)){
                             header("location: ../signup.php?error=stmtFailed");
@@ -315,7 +319,11 @@
                     
                         $postData = mysqli_stmt_get_result($poststmt);
 
+                        $className = str_replace(" ", "`", $className);
+
                         $createHeader = "create-review.php?className=" . $className . "&classId=" . $classId;
+
+                        $className = str_replace("`", " ", $className);
                     ?>
                     <form class="view-review-header" action=<?php echo $createHeader; ?> method="post">
                         <p>Showing Reviews for <?php echo $className; ?></p>
@@ -365,7 +373,7 @@
                                     <p><?php echo $reviewsAuthorName; ?></p>
                                 </div>
                                 <div class="user-review-year">
-                                    <label>Year:</label>
+                                    <label>Year: </label>
                                     <p><?php echo $year; ?></p>
                                 </div>
                                 <div class="user-review-rating">
@@ -392,6 +400,14 @@
                                 <div class=user-review-dislikes>
                                     <img class="dislike" user=<?php echo $userId; ?> id=<?php echo $reviewsId; ?> src="images/dislike.png" alt="" width=30 height=25 >
                                     <p id=<?php echo $dislikeId; ?>><?php echo $dislikes; ?></p>
+                                </div>
+                                <div>
+                                    <form action="view-post.php" method="get">
+                                        <input type="hidden" name="reviewsId" value=<?php echo $reviewsId ?>>
+                                        <input type="hidden" name="classId" value=<?php echo $classId ?>>
+                                        <input type="hidden" name="className" value=<?php echo $className ?>>
+                                        <button type="submit" class="comment-btn">Comment</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

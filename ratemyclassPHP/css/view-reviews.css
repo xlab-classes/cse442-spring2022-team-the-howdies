@@ -33,6 +33,7 @@
     border-radius: 12px;
     border: none;
     font-size: large;
+    color: white;
 
     width: 10%;
     height: 45px;
@@ -103,4 +104,28 @@
 .user-review-likes,
 .user-review-dislikes {
     display: flex;
+}
+
+.comment-btn {
+    height: 30px;
+    background-color: #6CBDCF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* MY REVIEWS DELETE BUTTON STYLING */
+.delete-review-header .delete-review-button {
+    background-color: #6CBDCF;
+    border-radius: 12px;
+    border: none;
+    font-size: large;
+    color: white;
+
+    width: 80px;
+    height: 45px;
+    margin-top: 17px;
+    margin-left: 5%;
+    cursor: pointer;
 }

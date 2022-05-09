@@ -10,7 +10,7 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title>PHP Project</title>
+        <title>Rate My Classes</title>
         <link rel="stylesheet" href="css/style.css">
     </head>
 
@@ -18,9 +18,11 @@
         <div class="view">
         <div class="header">
             <div class="header-name">
-                <h1>RateMyClasses</h1>
+                <div class="header-decor-box">
+                    <h1>RateMyClasses</h1>
+                </div>
             </div>
-            <nav>
+            <nav class="navbar">
                 <div class="wrapper">
                     <ul>
                         <li><a href="index.php">Home</a></li>
@@ -29,10 +31,10 @@
                                 echo "<li><a href='profile.php'>Profile</a></li>";
                             }
                         ?>
-                        <li><a href="university-select.php">Find or Create Reviews</a></li>
-                        <li><a href="my-reviews.php">My Reviews</a></li>
                         <?php 
                             if(isset($_SESSION["useruid"])){
+                                echo "<li> <a href='my-favorites.php'>My Favorites</a></li>";
+                                echo "<li> <a href='my-reviews.php'>My Reviews</a></li>";
                                 echo "<li style='float:right'><a href='includes/logout.inc.php'>Logout</a></li>";
                             }else{
                                 echo "<li style='float:right'><a href='signup.php'>Sign up</a></li>";
