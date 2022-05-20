@@ -5,6 +5,8 @@ CSE442 Team: The Howdies team project - RateMyClasses
 
 figma: https://www.figma.com/file/hNUIexgEzKkzxtYdGu4P31/Wireframe-RateMyClasses?node-id=5%3A15
 
+(NOTE: If you want to use the reset password functionality, do NOT use a UB email. For whatever reason, UB blocks the emails)
+
 Project Description
 
 Team Name: The Howdies
@@ -22,8 +24,6 @@ Create a web application similar to ratemyprofessor but for classes in general. 
 
 Technology Stack:
 Same as department (Apache, PHP, MySQL)
-Python backend
-NodeJS
 
 End Goals:
 Users able to login and navigate through a list of universities to one of their choosing
